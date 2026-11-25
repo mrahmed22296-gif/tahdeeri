@@ -214,8 +214,12 @@
       <input type="text" id="lessonSearch" placeholder="مثال: حرفة الغوص على اللؤلؤ" autocomplete="off">
       <div class="suggest" id="suggestBox"></div>
       <div class="not-found" id="notFound">
-        هذا الدرس غير موجود في المكتبة بعد. سيفتح لك نموذج فارغ بالعنوان نفسه وتعبئه يدويًا.
+        هذا الدرس غير موجود في المكتبة بعد. ولّده بالذكاء الاصطناعي، أو افتح نموذجًا فارغًا بالعنوان نفسه وتعبئه يدويًا.
         <button class="btn btn-ghost" id="blankLesson" type="button" style="margin-top:6px">فتح نموذج فارغ بهذا العنوان</button>
+      </div>
+      <div style="margin-top:10px">
+        <button class="btn" id="aiBtn" type="button" style="width:100%">✨ ولّد التحضير بالذكاء الاصطناعي</button>
+        <p class="empty-note" id="aiMsg" style="margin-top:6px">التوليد بالذكاء الاصطناعي متاح للمشتركين — والمكتبة والنموذج الفارغ متاحان دائمًا.</p>
       </div>
       <p class="empty-note" id="libNote"></p>
     </div>
@@ -952,6 +956,61 @@ const lsS = (k,v) => { try{ localStorage.setItem(k,v) }catch(e){} };
 const isSubscribed = () => lsG(SUB_KEY) === 'true';
 const usedCodes = () => { try{ const u = JSON.parse(lsG(USED_KEY)||'[]'); return Array.isArray(u)?u:[] }catch(e){ return [] } };
 let pendingLesson = null;
+let pendingGenerate = false;
+
+document.getElementById('aiBtn').onclick = async () => {
+  const msg = document.getElementById('aiMsg');
+  const title = searchInput.value.trim();
+  if(!title){
+    msg.textContent = 'اكتب عنوان الدرس أولاً في الخطوة ٢.';
+    msg.style.color = '#c0392b';
+    searchInput.focus();
+    return;
+  }
+  if(!isSubscribed()){
+    pendingGenerate = true;
+    document.getElementById('payOverlay').style.display = 'block';
+    return;
+  }
+  const btn = document.getElementById('aiBtn');
+  btn.disabled = true;
+  msg.style.color = '#666';
+  msg.textContent = 'جاري توليد التحضير بالذكاء الاصطناعي... (قد يستغرق نحو ٢٠ ثانية)';
+  try{
+    const code = usedCodes().slice(-1)[0] || '';
+    const r = await fetch('https://mohasaba-online.vercel.app/api/generate', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        site: SITE_ID, code, title,
+        template: state.template,
+        grade: document.getElementById('fClass').value.trim()
+      })
+    });
+    const data = await r.json();
+    if(data.ok && data.lesson){
+      const L = data.lesson;
+      L.template = state.template;
+      L.title = title;
+      render(L);
+      msg.textContent = 'تم توليد التحضير ✅ راجعه وعدّله قبل الطباعة.';
+      msg.style.color = '#1e8e3e';
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    } else if(data.error === 'rate'){
+      msg.textContent = 'وصلت للحد اليومي من التوليد. جرّب غدًا أو استخدم المكتبة/النموذج الفارغ.';
+      msg.style.color = '#c0392b';
+    } else if(data.error === 'title'){
+      msg.textContent = 'اكتب عنوان الدرس أولاً في الخطوة ٢.';
+      msg.style.color = '#c0392b';
+    } else {
+      msg.textContent = 'تعذر التوليد الآن. جرّب مرة أخرى أو استخدم المكتبة/النموذج الفارغ.';
+      msg.style.color = '#c0392b';
+    }
+  }catch(e){
+    msg.textContent = 'تعذر الاتصال بخدمة التوليد. تحقق من الاتصال وأعد المحاولة.';
+    msg.style.color = '#c0392b';
+  }
+  btn.disabled = false;
+};
 
 function tryLoadLesson(l){
   if(isSubscribed() || lsG(TRIAL_KEY) !== 'true'){
@@ -995,6 +1054,7 @@ document.getElementById('actBtn').onclick = async () => {
   setTimeout(() => {
     document.getElementById('payOverlay').style.display = 'none';
     if(pendingLesson){ render(pendingLesson); pendingLesson = null; }
+    if(pendingGenerate){ pendingGenerate = false; document.getElementById('aiBtn').click(); }
   }, 900);
 };
 
