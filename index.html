@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تحضيري — تحضير الدروس للمعلم الكويتي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1e7a4f; --green-dark:#155c3b; --green-soft:#e8f4ee;
+    --ink:#1f2a26; --muted:#5b6b63; --line:#d5e0da; --paper:#ffffff;
+    --amber:#b45309; --amber-soft:#fef3e2;
+    --radius:14px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Tajawal',system-ui,sans-serif;
+    background:#f2f5f3; color:var(--ink);
+    line-height:1.7;
+  }
+  /* ---------- Header ---------- */
+  .site-header{
+    background:linear-gradient(135deg,var(--green) 0%,var(--green-dark) 100%);
+    color:#fff; padding:28px 20px 60px; text-align:center;
+  }
+  .site-header h1{font-size:2rem; font-weight:800; letter-spacing:.5px}
+  .site-header p{margin-top:6px; opacity:.92; font-size:1.02rem}
+  .honesty{
+    display:inline-block; margin-top:12px; font-size:.85rem;
+    background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.3);
+    border-radius:999px; padding:4px 16px;
+  }
+  /* ---------- Layout ---------- */
+  .layout{
+    max-width:1240px; margin:-40px auto 40px; padding:0 16px;
+    display:grid; grid-template-columns:380px 1fr; gap:20px; align-items:start;
+  }
+  @media (max-width:980px){ .layout{grid-template-columns:1fr} }
+  .card{
+    background:var(--paper); border:1px solid var(--line);
+    border-radius:var(--radius); padding:18px;
+    box-shadow:0 6px 24px rgba(20,60,40,.06);
+  }
+  .card + .card{margin-top:16px}
+  .card h2{
+    font-size:1.05rem; font-weight:700; color:var(--green-dark);
+    margin-bottom:10px; display:flex; align-items:center; gap:8px;
+  }
+  .step-num{
+    width:26px; height:26px; border-radius:50%; background:var(--green);
+    color:#fff; display:inline-flex; align-items:center; justify-content:center;
+    font-size:.9rem; font-weight:700; flex:0 0 auto;
+  }
+  label.f{display:block; font-size:.88rem; font-weight:500; margin:10px 0 4px; color:var(--muted)}
+  input[type=text],input[type=date],select{
+    width:100%; padding:9px 12px; border:1.5px solid var(--line); border-radius:10px;
+    font-family:inherit; font-size:.95rem; background:#fbfdfc; color:var(--ink);
+  }
+  input:focus,select:focus{outline:none; border-color:var(--green); background:#fff}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+  /* template picker */
+  .tpl-pick{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+  .tpl-pick button{
+    border:1.5px solid var(--line); background:#fbfdfc; border-radius:12px;
+    padding:12px 8px; cursor:pointer; font-family:inherit; font-size:.92rem; font-weight:700;
+    color:var(--ink); transition:.15s;
+  }
+  .tpl-pick button small{display:block; font-weight:400; color:var(--muted); font-size:.78rem; margin-top:4px}
+  .tpl-pick button.active{border-color:var(--green); background:var(--green-soft); color:var(--green-dark)}
+  /* lesson suggestions */
+  .suggest{margin-top:8px; border:1px solid var(--line); border-radius:10px; overflow:hidden; display:none}
+  .suggest.show{display:block}
+  .suggest button{
+    display:block; width:100%; text-align:right; border:0; background:#fff;
+    padding:9px 12px; cursor:pointer; font-family:inherit; font-size:.92rem;
+    border-bottom:1px solid #eef3f0;
+  }
+  .suggest button:last-child{border-bottom:0}
+  .suggest button:hover{background:var(--green-soft)}
+  .suggest button .src{display:block; font-size:.75rem; color:var(--muted)}
+  .not-found{
+    display:none; margin-top:8px; padding:9px 12px; font-size:.85rem;
+    background:var(--amber-soft); color:var(--amber); border-radius:10px; border:1px solid #f3ddba;
+  }
+  .not-found.show{display:block}
+  /* chips */
+  .chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px}
+  .chip{
+    border:1px solid var(--line); background:#fbfdfc; border-radius:999px;
+    padding:4px 12px; font-size:.8rem; cursor:pointer; font-family:inherit; color:var(--ink);
+  }
+  .chip:hover{background:var(--green-soft); border-color:var(--green)}
+  /* buttons */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    border:0; border-radius:12px; padding:11px 18px; cursor:pointer;
+    font-family:inherit; font-size:.98rem; font-weight:700; transition:.15s;
+  }
+  .btn-primary{background:var(--green); color:#fff; width:100%}
+  .btn-primary:hover{background:var(--green-dark)}
+  .btn-ghost{background:#fff; border:1.5px solid var(--line); color:var(--ink); width:100%; margin-top:8px}
+  .btn-ghost:hover{border-color:var(--green); color:var(--green-dark)}
+  .btn-danger{background:#fff; border:1.5px solid #ecc; color:#a33; width:100%; margin-top:8px; font-size:.88rem; padding:8px}
+  /* saves */
+  .save-row{
+    display:flex; align-items:center; gap:8px; padding:8px 10px;
+    border:1px solid var(--line); border-radius:10px; margin-top:8px; background:#fbfdfc;
+  }
+  .save-row .nm{flex:1; font-size:.9rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .save-row button{
+    border:0; border-radius:8px; padding:4px 10px; cursor:pointer; font-family:inherit; font-size:.8rem;
+  }
+  .save-row .load{background:var(--green-soft); color:var(--green-dark)}
+  .save-row .del{background:#fdeeee; color:#a33}
+  .empty-note{font-size:.85rem; color:var(--muted); margin-top:8px}
+  /* ---------- Paper / form preview ---------- */
+  .paper-wrap{min-width:0}
+  .paper-toolbar{
+    display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:12px;
+  }
+  .paper-toolbar .hint{font-size:.85rem; color:var(--muted); flex:1}
+  .paper{
+    background:#fff; border:1px solid var(--line); border-radius:6px;
+    box-shadow:0 10px 30px rgba(20,60,40,.10);
+    padding:18px 20px; overflow-x:auto;
+  }
+  .sheet{min-width:860px}
+  .sheet [contenteditable]{outline:none; border-radius:4px; transition:background .12s}
+  .sheet [contenteditable]:hover{background:#f4faf7}
+  .sheet [contenteditable]:focus{background:#eafaf1; box-shadow:0 0 0 1.5px var(--green) inset}
+  .ftable{width:100%; border-collapse:collapse; table-layout:fixed}
+  .ftable td,.ftable th{
+    border:1.5px solid #333; padding:6px 8px; vertical-align:top;
+    font-size:.92rem; line-height:1.8;
+  }
+  .ftable th{background:var(--green-soft); font-weight:800; text-align:center; white-space:nowrap}
+  .head-cells th{background:var(--green); color:#fff; border-color:var(--green-dark)}
+  .head-cells td{text-align:center; font-weight:500; min-height:34px}
+  .band td{font-weight:700}
+  .band .lbl{color:var(--green-dark); white-space:nowrap}
+  .sec-title{
+    background:var(--green-soft); font-weight:800; text-align:center;
+    color:var(--green-dark); border:1.5px solid #333; padding:5px;
+  }
+  .sheet ol,.sheet ul{padding-right:20px; margin:2px 0}
+  .sheet li{margin-bottom:3px}
+  .mini-lbl{font-weight:800; color:var(--green-dark); margin-top:2px}
+  .row-tools{
+    display:flex; gap:4px; margin-top:4px;
+  }
+  .row-tools button{
+    border:1px solid var(--line); background:#fff; border-radius:6px;
+    font-size:.72rem; padding:2px 8px; cursor:pointer; font-family:inherit; color:var(--muted);
+  }
+  .row-tools button:hover{border-color:var(--green); color:var(--green-dark)}
+  li{position:relative}
+  li .li-del{
+    position:absolute; left:-6px; top:2px; border:0; background:#fdeeee; color:#b33;
+    border-radius:50%; width:18px; height:18px; font-size:.7rem; cursor:pointer;
+    display:none; align-items:center; justify-content:center; line-height:1;
+  }
+  li:hover .li-del{display:inline-flex}
+  .page-foot{
+    margin-top:10px; display:flex; justify-content:space-between; font-size:.85rem; font-weight:700;
+  }
+  /* ---------- Footer ---------- */
+  .site-footer{
+    max-width:1240px; margin:0 auto 30px; padding:0 16px;
+    font-size:.85rem; color:var(--muted); text-align:center;
+  }
+  /* ---------- Print ---------- */
+  @media print{
+    @page{size:A4 landscape; margin:7mm}
+    body{background:#fff}
+    .site-header,.controls-col,.paper-toolbar,.site-footer,.row-tools,.li-del{display:none !important}
+    .layout{display:block; margin:0; padding:0; max-width:none}
+    .paper{border:0; box-shadow:none; padding:0; overflow:visible; border-radius:0}
+    .sheet{min-width:0}
+    .sheet [contenteditable]:hover,.sheet [contenteditable]:focus{background:none; box-shadow:none}
+    .ftable td,.ftable th{font-size:9.5pt; line-height:1.45; padding:2px 4px}
+    .sheet ol,.sheet ul{padding-right:14px; margin:0}
+    .sheet li{margin-bottom:0}
+    .mini-lbl{margin-top:1px}
+    .sheet p{margin:0}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>تحضيري</h1>
+  <p>اكتب عنوان الدرس، واحصل على تحضير كامل بنموذج وزارة التربية الكويتية جاهز للتعديل والطباعة</p>
+  <span class="honesty">المحتوى صياغة أصلية مقترحة وليس نصًا من كتاب الوزارة — راجعه قبل اعتماده</span>
+</header>
+
+<main class="layout">
+  <!-- ============ Controls ============ -->
+  <div class="controls-col">
+    <div class="card">
+      <h2><span class="step-num">1</span> اختر نموذج التحضير</h2>
+      <div class="tpl-pick">
+        <button id="tplSocial" class="active" type="button">الدراسات الاجتماعية<small>معيار المنهج + تحليل المادة + التعميم</small></button>
+        <button id="tplPsych" type="button">علم النفس والاجتماع والفلسفة<small>عنوان الوحدة والدرس + المادة العلمية</small></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="step-num">2</span> اكتب عنوان الدرس</h2>
+      <input type="text" id="lessonSearch" placeholder="مثال: حرفة الغوص على اللؤلؤ" autocomplete="off">
+      <div class="suggest" id="suggestBox"></div>
+      <div class="not-found" id="notFound">
+        هذا الدرس غير موجود في المكتبة بعد. سيفتح لك نموذج فارغ بالعنوان نفسه وتعبئه يدويًا.
+        <button class="btn btn-ghost" id="blankLesson" type="button" style="margin-top:6px">فتح نموذج فارغ بهذا العنوان</button>
+      </div>
+      <p class="empty-note" id="libNote"></p>
+    </div>
+
+    <div class="card">
+      <h2><span class="step-num">3</span> بيانات الحصة</h2>
+      <div class="grid2">
+        <div>
+          <label class="f">اليوم</label>
+          <select id="fDay">
+            <option>الأحد</option><option>الاثنين</option><option>الثلاثاء</option>
+            <option>الأربعاء</option><option>الخميس</option>
+          </select>
+        </div>
+        <div>
+          <label class="f">التاريخ</label>
+          <input type="text" id="fDate">
+        </div>
+        <div>
+          <label class="f">الحصة</label>
+          <select id="fPeriod">
+            <option>الأولى</option><option>الثانية</option><option>الثالثة</option><option>الرابعة</option>
+            <option>الخامسة</option><option>السادسة</option><option>السابعة</option><option>الثامنة</option>
+          </select>
+        </div>
+        <div>
+          <label class="f">الصف</label>
+          <input type="text" id="fClass" placeholder="مثال: الخامس «ج»">
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>بنك الأنشطة والاستراتيجيات</h2>
+      <p class="empty-note" style="margin:0 0 4px">اضغط أي فكرة لإضافتها إلى قائمة أنشطة النمو في النموذج:</p>
+      <div class="chips" id="activityBank"></div>
+    </div>
+
+    <div class="card">
+      <h2>الطباعة والحفظ</h2>
+      <button class="btn btn-primary" id="printBtn" type="button">🖨️ طباعة / حفظ PDF</button>
+      <button class="btn btn-ghost" id="saveBtn" type="button">💾 حفظ نسخة في المتصفح</button>
+      <button class="btn btn-danger" id="clearBtn" type="button">مسح كل الحقول</button>
+      <div id="savesList"></div>
+    </div>
+  </div>
+
+  <!-- ============ Preview ============ -->
+  <div class="paper-wrap">
+    <div class="paper-toolbar">
+      <span class="hint">✏️ اضغط على أي نص داخل النموذج لتعديله مباشرة، وأضف أو احذف الأسطر بأزرار + و −</span>
+    </div>
+    <div class="paper" id="paper">
+      <div class="sheet" id="sheet"><!-- rendered by JS --></div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  تحضيري — أداة مجانية تساعد المعلم على ترتيب تحضيره. الصياغات مقترحة وقابلة للتعديل بالكامل، وهي ليست نصوصًا منسوخة من كتب وزارة التربية. النماذج تختلف من مادة لأخرى؛ اختر النموذج المناسب لمادتك وعدّل ما يلزم.
+</footer>
+
+<script>
+/* ================= مكتبة الدروس =================
+   template: 'social' | 'psych'
+   الحقول الفارغة '' تُترك للمعلم.
+*/
+const LESSONS = [
+{
+  id:'social-ships-fishing', template:'social', grade:'الصف الخامس',
+  title:'صناعة السفن وصيد الأسماك في منطقة الخليج العربية', page:'ص 89',
+  unit:'الوحدة الرابعة: السمات الاقتصادية لدولة الكويت ودول الخليج العربية',
+  standard:'استخدام الجغرافيا لتفسير الماضي والحاضر والتخطيط للمستقبل',
+  opening:'طرح سؤال: ما الأدوات التي كان يستخدمها أجدادنا في صيد الأسماك قديمًا؟',
+  concepts:['القالف','الورجية'],
+  facts:[
+    'نشأت صناعة السفن في دول الخليج العربية لحاجة السكان إلى السفن في التجارة وصيد الأسماك والغوص على اللؤلؤ.',
+    'صنعت السفن من الخشب، ويعد خشب الساج من أفضل أنواعه.',
+    'من أشهر أنواع السفن قديمًا: البغلة، البوم، الجالبوت، الشوعي، الورجية.',
+    'يعد صيد الأسماك من أقدم المهن التي مارسها سكان منطقة الخليج العربية.',
+    'من الوسائل القديمة لصيد الأسماك: الحظرة، المشار، القراقير.'
+  ],
+  generalization:'معظم سكان دول الخليج العربية قديمًا يمارسون حرفة صيد الأسماك.',
+  objectives:[
+    'تعرف المفاهيم الواردة في الدرس.',
+    'تعلل نشأة صناعة السفن في دول الخليج العربية.',
+    'تفسر صناعة السفن من خشب الساج.',
+    'تسمي أشهر أنواع السفن في دول الخليج العربية.',
+    'تعدد الوسائل القديمة لصيد الأسماك.',
+    'تذكر أنواع الأسماك في دول الخليج العربية.'
+  ],
+  activities:[
+    'استخدام السبورة لتوضيح معاني المفاهيم.',
+    'تقرأ ك ص 89 لتعلل نشأة صناعة السفن في دول الخليج.',
+    'تشاهد صور ص 89 لتسمي أشهر أنواع السفن في دول الخليج.',
+    'تشاهد صور ك ص 89 لتحدد أنواع الأسماك في دول الخليج العربية.',
+    'تشاهد صورة شكل (49) ص 90 لتذكر أهم وسائل صيد الأسماك قديمًا.'
+  ],
+  assessment:[
+    'س1: عرّف مفهوم: القالف، الورجية.',
+    'س2: علّل ما يلي: نشأت صناعة السفن في دول الخليج العربية.',
+    'س2: علّل ما يلي: صناعة السفن من خشب الساج.',
+    'س3: أجب عمّا يلي: عدّد أشهر أنواع السفن في دول الخليج.',
+    'س3: أجب عمّا يلي: سمِّ أنواع الأسماك في دول الخليج العربية.'
+  ],
+  essay:['س1: عدد أهم أنواع السفن في دول الخليج العربية؟'],
+  aids:['السبورة والكتاب المدرسي','خريطة دول الخليج العربية'],
+  value:'تقدير العلم والعلماء',
+  adjacent:''
+},
+{
+  id:'social-pearl-diving', template:'social', grade:'الصف الخامس',
+  title:'حرفة الغوص على اللؤلؤ في منطقة الخليج العربية', page:'ص 91',
+  unit:'الوحدة الرابعة: السمات الاقتصادية لدولة الكويت ودول الخليج العربية',
+  standard:'يبني معرفة واتجاهات مدنية حول دولته وجوارها ومكانتها في سياق العالم',
+  opening:'طرح سؤال: ما اسم بداية موسم الغوص؟',
+  concepts:['الدشة','القفال','الخانجية','الطواش','اليونسكو'],
+  facts:[
+    'مارس أجدادنا مهنة الغوص على اللؤلؤ ثم انصرفوا عنها بسبب ظهور النفط واكتشاف اللؤلؤ الصناعي الذي استزرعوه في اليابان.',
+    'تسمى بداية موسم الغوص الدشة ونهايته القفال، ويمتد 4 شهور وتسمى الخانجية الكبير.',
+    'طاقم سفينة الغوص: التباب، المجدمي، النهام، النوخذة، الرضيف، السيب، الغيص.',
+    'كانت المرأة قديمًا في موسم الغوص رمزًا للصبر والقوة والتكيف مع الظروف الصعبة.',
+    'حرصت الكويت على إحياء هذا التراث من خلال مهرجان الغوص السنوي، وطلب تسجيل مهنة الغوص موروثًا غير مادي في اليونسكو.'
+  ],
+  generalization:'',
+  objectives:[
+    'تعرف المفاهيم الواردة في الدرس.',
+    'تعلل انصراف دول الخليج عن مهنة الغوص على اللؤلؤ.',
+    'تسمي طاقم سفينة الغوص على اللؤلؤ.',
+    'توضح دور المرأة قديمًا في موسم الغوص.',
+    'تذكر جهود الكويت في الحفاظ على التراث البحري.'
+  ],
+  activities:[
+    'تقرأ ك م ص 89 لتحليل انصراف دول الخليج عن مهنة الغوص على اللؤلؤ.',
+    'تقرأ ك م ص 89 لتسمي طاقم سفينة الغوص على اللؤلؤ.',
+    'تشاهد صور ص 90 لتوضح دور المرأة قديمًا في موسم الغوص.',
+    'تقرأ فقرة لتذكر جهود الكويت في الحفاظ على التراث البحري.'
+  ],
+  assessment:[
+    'س1: عرّف مفهوم: الدشة، القفال، الطواش، الخانجية.',
+    'س2: علّل ما يلي: يعلل انصراف السكان عن حرفة الغوص.',
+    'يسمي طاقم سفينة الغوص على اللؤلؤ.'
+  ],
+  essay:['س1: سمِّ أفراد طاقم سفينة الغوص؟'],
+  aids:['السبورة والكتاب المدرسي','خريطة دول الخليج العربية'],
+  value:'التآزر الاجتماعي بين أفراد المجتمع في فترة رحلة الغوص',
+  adjacent:''
+},
+{
+  id:'social-oil', template:'social', grade:'الصف الخامس',
+  title:'النفط وأثره في دولة الكويت ودول الخليج العربية', page:'',
+  unit:'الوحدة الرابعة: السمات الاقتصادية لدولة الكويت ودول الخليج العربية',
+  standard:'يبني معرفة واتجاهات مدنية حول دولته وجوارها ومكانتها في سياق العالم',
+  opening:'عرض صورة لمصفاة نفط وسؤال الطلاب: ما أهمية النفط في حياتنا اليوم؟',
+  concepts:['النفط','المصفاة','التصدير'],
+  facts:[
+    'يعد النفط أهم الموارد الطبيعية في دولة الكويت ودول الخليج العربية.',
+    'ساهم اكتشاف النفط في تغيّر حياة السكان وانتقالهم من المهن القديمة إلى أعمال حديثة.',
+    'تُكرّر النفط في المصافي للحصول على مشتقاته مثل الوقود.',
+    'تصدّر دول الخليج النفط إلى العديد من دول العالم.',
+    'يعتمد اقتصاد دول الخليج اعتمادًا كبيرًا على إيرادات النفط.'
+  ],
+  generalization:'يعد النفط المصدر الرئيسي للدخل في دولة الكويت ودول الخليج العربية.',
+  objectives:[
+    'تعرف المفاهيم الواردة في الدرس.',
+    'تعلل أهمية النفط في اقتصاد دول الخليج.',
+    'تعدد مشتقات النفط.',
+    'تقارن بين حياة السكان قبل النفط وبعده.',
+    'تقدّر نعمة الثروة النفطية وأهمية المحافظة عليها.'
+  ],
+  activities:[
+    'استخدام السبورة لتوضيح معاني المفاهيم.',
+    'الحوار والمناقشة حول أثر النفط في تغيّر حياة السكان.',
+    'استراتيجية فكر – زاوج – شارك لعدد مشتقات النفط.',
+    'تشاهد خريطة لتحديد مواقع حقول النفط في دول الخليج.'
+  ],
+  assessment:[
+    'س1: عرّف مفهوم: المصفاة.',
+    'س2: علّل ما يلي: يعد النفط أهم الموارد في دول الخليج.',
+    'س3: أجب عمّا يلي: عدّد مشتقات النفط.'
+  ],
+  essay:['س1: علّل: تعتمد دول الخليج في اقتصادها على النفط؟'],
+  aids:['السبورة والكتاب المدرسي','خريطة دول الخليج العربية'],
+  value:'تقدير نعم الله والمحافظة على الموارد',
+  adjacent:''
+},
+{
+  id:'social-trade', template:'social', grade:'الصف الخامس',
+  title:'التجارة في دولة الكويت ودول الخليج العربية قديمًا وحديثًا', page:'',
+  unit:'الوحدة الرابعة: السمات الاقتصادية لدولة الكويت ودول الخليج العربية',
+  standard:'استخدام الجغرافيا لتفسير الماضي والحاضر والتخطيط للمستقبل',
+  opening:'طرح سؤال: كيف كان أجدادنا يتاجرون قبل ظهور الموانئ الحديثة؟',
+  concepts:['التجارة','الميناء'],
+  facts:[
+    'اشتهرت دول الخليج قديمًا بالتجارة البحرية بسبب موقعها على طرق التجارة بين الهند وشرق أفريقيا.',
+    'كانت السفن الشراعية تحمل البضائع مثل التمور واللؤلؤ والتوابل.',
+    'تطورت التجارة حديثًا بوجود الموانئ الحديثة والمطارات.',
+    'يعد ميناء الشويخ وميناء الشعيبة من الموانئ المهمة في دولة الكويت.',
+    'تساهم التجارة في توفير السلع وزيادة دخل الدولة.'
+  ],
+  generalization:'للموقع الجغرافي المتميز أثر كبير في نشاط دول الخليج التجاري قديمًا وحديثًا.',
+  objectives:[
+    'تعرف المفاهيم الواردة في الدرس.',
+    'تعلل ازدهار التجارة البحرية في دول الخليج قديمًا.',
+    'تعدد السلع التي كانت تتبادلها دول الخليج.',
+    'تسمي موانئ دولة الكويت الحديثة.',
+    'تستنتج أهمية التجارة في حياة المجتمع.'
+  ],
+  activities:[
+    'استخدام السبورة لتوضيح معاني المفاهيم.',
+    'تشاهد خريطة طرق التجارة القديمة لتستنتج أهمية الموقع.',
+    'لعبة اخدش واربح لعدد السلع القديمة.',
+    'الحوار والمناقشة حول أهمية الموانئ الحديثة.'
+  ],
+  assessment:[
+    'س1: عرّف مفهوم: التجارة.',
+    'س2: علّل ما يلي: ازدهرت التجارة البحرية في دول الخليج قديمًا.',
+    'س3: أجب عمّا يلي: سمِّ موانئ دولة الكويت.'
+  ],
+  essay:['س1: علّل: كان لموقع دول الخليج أثر في ازدهار تجارتها؟'],
+  aids:['السبورة والكتاب المدرسي','خريطة دول الخليج العربية'],
+  value:'تقدير جهود الأجداد في بناء الاقتصاد الوطني',
+  adjacent:''
+},
+{
+  id:'psych-identity', template:'psych', grade:'الثانوية',
+  title:'الهوية الاجتماعية والضبط الاجتماعي', page:'',
+  unit:'دراسة العمليات الاجتماعية',
+  standard:'',
+  opening:'عرض صورة المدنية الكويتية لتتعرف على موضوع الدرس.',
+  concepts:['الهوية الاجتماعية','الضبط الاجتماعي'],
+  facts:[
+    'الهوية الاجتماعية تنقسم إلى قسمين: الهوية الاجتماعية والهوية الذاتية.',
+    'من مصادر الهوية الاجتماعية: الجنسية، الوعي الإنساني، الطبقة الاجتماعية، الوضع الاقتصادي.',
+    'من مكونات الهوية: الموقع الجغرافي، ذاكرة تاريخية وطنية مشتركة، ثقافة شعبية موحدة، حقوق وواجبات مشتركة.',
+    'تتمثل الوظيفة الأساسية للضبط الاجتماعي في تحديد نطاق السلوك المقبول في المجتمع.',
+    'يساهم الضبط الاجتماعي في الحد من السلوكيات غير المقبولة، وتحقيق الأمن والاستقرار داخل المجتمع.'
+  ],
+  generalization:'',
+  objectives:[
+    'تفسر المفاهيم الواردة بالدرس.',
+    'ترسم مخططًا سهميًا لأنواع الهوية الاجتماعية.',
+    'تعدد مصادر الهوية الاجتماعية.',
+    'تذكر مكونات الهوية.',
+    'تستنتج أهمية الضبط الاجتماعي في تنظيم سلوك الأفراد داخل المجتمع.',
+    'تقدّر أهمية الالتزام بالضوابط والقواعد الاجتماعية في تحقيق الاستقرار والتماسك داخل المجتمع.'
+  ],
+  activities:[
+    'تلاحظ البطاقات لتفسر المفاهيم الواردة بالدرس.',
+    'ترسم على السبورة مخططًا سهميًا لأنواع الهوية الاجتماعية.',
+    'تقرأ الفقرة رقم (2) بالكتاب المدرسي لتعدد مصادر الهوية الاجتماعية.',
+    'لعبة اخدش واربح لتذكر مكونات الهوية.',
+    'استراتيجية فكر – زاوج – شارك لتستنتج أهمية الضبط الاجتماعي في تنظيم سلوك الأفراد.',
+    'الحوار والمناقشة لتقدّر أهمية الالتزام بالضوابط والقواعد الاجتماعية.'
+  ],
+  assessment:[
+    'فسري المفاهيم التالية.',
+    'ارسي مخططًا سهميًا لأنواع الهوية الاجتماعية.',
+    'عددي مصادر الهوية الاجتماعية.',
+    'اذكري مكونات الهوية.',
+    'ما أهمية الضبط الاجتماعي في تنظيم سلوك الأفراد داخل المجتمع.',
+    'عللي صحة العبارة: يساهم الضبط الاجتماعي في الحد من السلوكيات غير المقبولة وتحقيق الأمن داخل المجتمع.'
+  ],
+  closing:'الهوية الاجتماعية والضبط الاجتماعي',
+  adjacent:''
+},
+{
+  id:'phil-knowledge', template:'psych', grade:'الثانوية',
+  title:'تعريف المعرفة', page:'',
+  unit:'ما الفلسفة',
+  standard:'',
+  opening:'سؤال الطالبات: من أين تأتي معرفتنا بالأشياء؟ ومناقشة إجاباتهن لكي تتعرفن على معنى الدرس.',
+  concepts:['المعرفة'],
+  facts:[
+    'صورة المعرفة وشكلها ذاتي يحققه الإنسان بواسطة حواسه وعقله.',
+    'مضمون المعرفة موضوعي يتعلق بالعالم بمختلف أحداثه وظواهره الطبيعية.',
+    'من مميزات المعرفة: تعد واقعًا قائمًا، تتصف بطابعها التطبيقي، تتميز بطابعها الاجتماعي.',
+    'المعرفة تنمو وتتقدم تاريخيًا حيث إنها تنقلنا من الجهل إلى المعرفة.'
+  ],
+  generalization:'',
+  value:'',
+  objectives:[
+    'تتعرف على مفهوم المعرفة.',
+    'تستكشف الوسائل التي يحصل بها الإنسان على المعرفة (نفس حركي).',
+    'تتعرف على مضمون المعرفة التي يحصل عليها الإنسان (معرفي - تذكر).',
+    'تعدد مميزات المعرفة (معرفي - تذكر).',
+    'تقدر دور المعرفة في نقلنا من الجهل إلى المعرفة (وجداني).'
+  ],
+  activities:[
+    'تقرأ البطاقات لتتعرف على مفهوم المعرفة.',
+    'تستعين بنشاط اكتشف ما في الصندوق لتستكشف الوسائل التي يحصل بها الإنسان على المعرفة بواسطة حواسه.',
+    'تلاحظ الصور لتتعرف على مضمون المعرفة التي يحصل عليها الإنسان.',
+    'تقرأ الفقرة الثانية من الكتاب المدرسي ص 2،3 لتعدد مميزات المعرفة.',
+    'الحوار والمناقشة لتقدر دور المعرفة في نقلنا من الجهل إلى المعرفة.'
+  ],
+  assessment:[
+    'أكملي العبارة: يحقق الإنسان المعرفة بواسطة ........',
+    'صححي العبارة: يعد مضمون المعرفة ذاتيًا.',
+    'عددي مميزات المعرفة.',
+    'دللي على صحة العبارة: تتصف المعرفة بأنها تاريخية.'
+  ],
+  closing:'طرح مجموعة من الأسئلة',
+  adjacent:'دللي على صحة العبارة: تتصف المعرفة بأنها تاريخية.'
+},
+{
+  id:'phil-branches', template:'psych', grade:'الثانوية',
+  title:'مباحث الفلسفة', page:'',
+  unit:'الوحدة الأولى: ما الفلسفة',
+  standard:'',
+  opening:'طرح سؤال على المتعلمات: ما مفهومك لكلمة مبحث؟ ثم سماع إجاباتهن ومناقشتهن فيها كمدخل للدرس.',
+  concepts:['الفلسفة','الوجود','المعرفة','القيم'],
+  facts:[
+    'اختلاف الفلاسفة حول مفهوم الفلسفة يرجع لسبب اختلاف مباحثها وتباين اتجاهاتها.',
+    'مباحث الفلسفة هي الوجود والمعرفة والقيم.',
+    'يعد مبحث الوجود أقدم مباحث الفكر الفلسفي.',
+    'يعتبر جون لوك أول من وضع بحثًا فلسفيًا يتناول أصل المعرفة.',
+    'مبحث القيم ينقسم إلى ثلاثة أقسام: قيمة الجمال، قيمة الخير، قيمة الحق.'
+  ],
+  generalization:'تتميز الفلسفة بأنها مجال معرفي له مباحث متعددة ومتنوعة.',
+  value:'التقدير والاعتزاز بدور جون لوك في البحث عن أصل المعرفة.',
+  objectives:[
+    'تتعرف على المفاهيم الواردة بالدرس.',
+    'تعلل اختلاف الفلاسفة حول مفهوم وماهية الفلسفة.',
+    'تعدد مباحث الفلسفة.',
+    'تسمي أقدم مباحث الفلسفة.',
+    'تثني على دور جون لوك في البحث عن أصل المعرفة.',
+    'تعدد أقسام مبحث القيم.'
+  ],
+  activities:[
+    'تستعين بالبطاقات لتتعرف على المفاهيم الواردة بالدرس.',
+    'بالحوار والمناقشة مع المعلمة تعلل اختلاف الفلاسفة حول مفهوم وماهية الفلسفة.',
+    'تلاحظ البطاقات على السبورة لتعدد مباحث الفلسفة.',
+    'تستعين بالفقرة رقم 2 بالكتاب المدرسي ص 20 لتسمي أقدم مباحث الفلسفة.',
+    'الحوار والمناقشة لتثني على دور جون لوك في البحث عن أصل المعرفة.',
+    'ترسم مخططًا سهميًا لتعدد أقسام مبحث القيم.'
+  ],
+  assessment:[
+    'عرفي المفاهيم التالية: الفلسفة، الوجود، المعرفة.',
+    'عللي اختلاف الفلاسفة حول مفهوم الفلسفة؟',
+    'ما هي أقسام مباحث الفلسفة؟',
+    'أول من وضع بحثًا فلسفيًا يتناول أصل المعرفة هو العالم ........',
+    'قارني بين كل من: قيمة الجمال – قيمة الخير – قيمة الحق.'
+  ],
+  closing:'طرح مجموعة من الأسئلة',
+  adjacent:'علل اختلاف الفلاسفة حول مفهوم الفلسفة / قارن بين كل من قيمة الجمال – قيمة الخير – قيمة الحق'
+},
+{
+  id:'psych-interaction', template:'psych', grade:'الثانوية',
+  title:'التفاعل الاجتماعي', page:'',
+  unit:'دراسة العمليات الاجتماعية',
+  standard:'',
+  opening:'طرح موقف: طالبان يتعاونان في مشروع مدرسي، وسؤال الطالبات: ما نوع العلاقة بينهما؟',
+  concepts:['التفاعل الاجتماعي','العملية الاجتماعية'],
+  facts:[
+    'التفاعل الاجتماعي هو أساس الحياة الجماعية ولا يستغني عنه الفرد في مجتمعه.',
+    'تبدأ العملية الاجتماعية بالاتصال بين الأفراد وتنتهي بالتكيف.',
+    'من صور التفاعل الاجتماعي: التعاون والتنافس والصراع.',
+    'يختلف التفاعل الاجتماعي من موقف إلى آخر بحسب طبيعة الموقف والأفراد.',
+    'يساهم التفاعل الاجتماعي في بناء العلاقات وتشكيل شخصية الفرد.'
+  ],
+  generalization:'',
+  objectives:[
+    'تفسر مفهوم التفاعل الاجتماعي.',
+    'تعدد صور التفاعل الاجتماعي.',
+    'ترتب مراحل العملية الاجتماعية.',
+    'تستنتج أهمية التفاعل الاجتماعي في حياة الفرد والمجتمع.',
+    'تقدّر قيمة التعاون بين أفراد المجتمع.'
+  ],
+  activities:[
+    'تلاحظ بطاقات المواقف لتفسر مفهوم التفاعل الاجتماعي.',
+    'الحوار والمناقشة لعدد صور التفاعل الاجتماعي.',
+    'ترسم على السبورة مخططًا لمراحل العملية الاجتماعية.',
+    'استراتيجية فكر – زاوج – شارك لتستنتج أهمية التفاعل الاجتماعي.'
+  ],
+  assessment:[
+    'فسري مفهوم التفاعل الاجتماعي.',
+    'عددي صور التفاعل الاجتماعي.',
+    'رتبي مراحل العملية الاجتماعية.',
+    'عللي صحة العبارة: التفاعل الاجتماعي أساس الحياة الجماعية.'
+  ],
+  closing:'التفاعل الاجتماعي أساس الحياة الجماعية',
+  adjacent:''
+},
+{
+  id:'psych-groups', template:'psych', grade:'الثانوية',
+  title:'الجماعات الاجتماعية', page:'',
+  unit:'دراسة العمليات الاجتماعية',
+  standard:'',
+  opening:'سؤال تمهيدي: ما الجماعات التي تنتمين إليها في حياتك اليومية؟',
+  concepts:['الجماعة الاجتماعية','الجماعة الأولية','الجماعة الثانوية'],
+  facts:[
+    'الجماعة الاجتماعية مجموعة من الأفراد تربطهم علاقات وروابط مشتركة.',
+    'تنقسم الجماعات إلى جماعات أولية مثل الأسرة وجماعات ثانوية مثل المدرسة والنقابة.',
+    'تتميز الجماعة الأولية بصغر حجمها وقوة العلاقات بين أفرادها.',
+    'تتميز الجماعة الثانوية بكبر حجمها ورسمية العلاقات بين أفرادها.',
+    'تساهم الجماعات الاجتماعية في تحقيق حاجات الفرد وانتمائه.'
+  ],
+  generalization:'',
+  objectives:[
+    'تفسر مفهوم الجماعة الاجتماعية.',
+    'تقارن بين الجماعة الأولية والجماعة الثانوية.',
+    'تصنف جماعات من حياتها اليومية.',
+    'تستنتج أهمية الجماعات الاجتماعية للفرد.',
+    'تقدّر قيمة الانتماء للأسرة والوطن.'
+  ],
+  activities:[
+    'تلاحظ البطاقات لتفسر مفهوم الجماعة الاجتماعية.',
+    'ترسم جدولًا على السبورة للمقارنة بين الجماعتين.',
+    'لعبة اخدش واربح لتصنيف الجماعات.',
+    'الحوار والمناقشة لتستنتج أهمية الجماعات الاجتماعية.'
+  ],
+  assessment:[
+    'فسري مفهوم الجماعة الاجتماعية.',
+    'قارني بين الجماعة الأولية والجماعة الثانوية.',
+    'صنفي الجماعات التالية: الأسرة، المدرسة، النقابة.',
+    'عللي صحة العبارة: تساهم الجماعات في تحقيق حاجات الفرد.'
+  ],
+  closing:'الجماعات الاجتماعية وأنواعها',
+  adjacent:''
+}
+];
+
+/* بنك الأنشطة */
+const ACTIVITY_BANK = [
+  'العصف الذهني','استراتيجية فكر – زاوج – شارك','لعبة اخدش واربح','الحوار والمناقشة',
+  'خرائط المفاهيم','لعب الأدوار','حلقات النقاش الجماعي','التعلم بالاكتشاف',
+  'عرض صور من الكتاب المدرسي','تعلم الأقران','مسابقة بين المجموعات','تمثيل الموقف'
+];
+
+/* ================= الحالة ================= */
+const state = { template:'social' };
+const sheet = document.getElementById('sheet');
+
+/* أدوات HTML */
+const esc = s => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const editable = (txt,ph) => `<span contenteditable="true" data-ph="${esc(ph||'')}">${esc(txt)}</span>`;
+const listHtml = (items, ordered=true) => {
+  const tag = ordered ? 'ol' : 'ul';
+  const lis = (items && items.length ? items : ['']).map(t =>
+    `<li><span contenteditable="true">${esc(t)}</span><button type="button" class="li-del no-print" title="حذف السطر">×</button></li>`).join('');
+  return `<${tag} class="edit-list">${lis}</${tag}>
+    <div class="row-tools no-print">
+      <button type="button" class="li-add">+ إضافة سطر</button>
+    </div>`;
+};
+
+/* ================= رسم النموذج ================= */
+function render(lesson){
+  const L = lesson || {};
+  const day = document.getElementById('fDay').value;
+  const date = document.getElementById('fDate').value;
+  const period = document.getElementById('fPeriod').value;
+  const cls = document.getElementById('fClass').value;
+
+  const headRow = `
+    <table class="ftable head-cells" style="width:46%; margin-right:auto; margin-bottom:8px">
+      <tr><th>اليوم</th><th>التاريخ</th><th>الحصة</th><th>الصف</th></tr>
+      <tr>
+        <td>${editable(day)}</td><td>${editable(date)}</td>
+        <td>${editable(period)}</td><td>${editable(cls,'اكتب الصف')}</td>
+      </tr>
+    </table>`;
+
+  if(state.template === 'social'){
+    sheet.innerHTML = `
+      ${headRow}
+      <table class="ftable band" style="margin-bottom:0">
+        <tr>
+          <td style="width:64%"><span class="lbl">${editable(L.unit || '', 'اسم الوحدة')}</span><br>
+            <span class="lbl">معيار المنهج:</span> ${editable(L.standard || '', 'معيار المنهج')}<br>
+            <span class="lbl">موضوع الدرس:</span> ${editable(L.title || '', 'عنوان الدرس')} ${editable(L.page || '', 'رقم الصفحة')}</td>
+          <td><span class="lbl">النشاط الاستهلالي:</span><br>${editable(L.opening || '', 'النشاط الاستهلالي')}</td>
+        </tr>
+      </table>
+      <table class="ftable">
+        <tr>
+          <th style="width:34%">تحليل المادة العلمية</th>
+          <th style="width:22%">الأهداف السلوكية</th>
+          <th style="width:22%">أنشطة النمو</th>
+          <th style="width:22%">التقويم المصاحب</th>
+        </tr>
+        <tr>
+          <td>
+            <div class="mini-lbl">المفاهيم والمصطلحات:</div>
+            ${listHtml(L.concepts, false)}
+            <div class="mini-lbl">الحقائق:</div>
+            ${listHtml(L.facts)}
+            <div class="mini-lbl">التعميم:</div>
+            <p>${editable(L.generalization || '', 'التعميم')}</p>
+          </td>
+          <td>
+            <div class="mini-lbl">في نهاية الدرس أتوقع أن يكون الطالب قادرًا على أن:</div>
+            ${listHtml(L.objectives)}
+          </td>
+          <td>${listHtml(L.activities)}</td>
+          <td>${listHtml(L.assessment)}</td>
+        </tr>
+      </table>
+      <table class="ftable">
+        <tr>
+          <td style="width:30%"><span class="mini-lbl">الوسائل والمعينات المجددة:</span>${listHtml(L.aids, false)}</td>
+          <td style="width:30%"><span class="mini-lbl">علل لما يلي:</span>${listHtml(L.essay)}</td>
+          <td style="width:20%"><span class="mini-lbl">النشاط الملاصق:</span><br>${editable(L.adjacent || '')}</td>
+          <td style="width:20%"><span class="mini-lbl">قيمة الشهر:</span><br>${editable(L.value || '')}</td>
+        </tr>
+      </table>`;
+  } else {
+    sheet.innerHTML = `
+      ${headRow}
+      <table class="ftable band" style="margin-bottom:0">
+        <tr>
+          <td style="width:30%"><span class="lbl">عنوان الوحدة:</span><br>${editable(L.unit || '', 'عنوان الوحدة')}</td>
+          <td style="width:30%"><span class="lbl">عنوان الدرس:</span><br>${editable(L.title || '', 'عنوان الدرس')}<br><span class="lbl">معيار المنهج:</span> ${editable(L.standard || '')}</td>
+          <td><span class="lbl">النشاط الاستهلالي:</span><br>${editable(L.opening || '', 'النشاط الاستهلالي')}</td>
+        </tr>
+      </table>
+      <table class="ftable">
+        <tr>
+          <th style="width:34%">المادة العلمية</th>
+          <th style="width:22%">الأهداف السلوكية</th>
+          <th style="width:22%">أنشطة النمو</th>
+          <th style="width:22%">التقويم المصاحب</th>
+        </tr>
+        <tr>
+          <td>
+            <div class="mini-lbl">المفاهيم:</div>
+            ${listHtml(L.concepts, false)}
+            <div class="mini-lbl">الحقائق:</div>
+            ${listHtml(L.facts)}
+            <div class="mini-lbl">التعميم:</div>
+            <p>${editable(L.generalization || '')}</p>
+            <div class="mini-lbl">القيم:</div>
+            <p>${editable(L.value || '')}</p>
+          </td>
+          <td>
+            <div class="mini-lbl">نهاية الدرس يكون المتعلم قادرًا على أن:</div>
+            ${listHtml(L.objectives)}
+          </td>
+          <td>${listHtml(L.activities)}</td>
+          <td>${listHtml(L.assessment)}</td>
+        </tr>
+      </table>
+      <table class="ftable">
+        <tr>
+          <td style="width:50%"><span class="mini-lbl">النشاط الختامي:</span> ${editable(L.closing || '')}</td>
+          <td><span class="mini-lbl">النشاط الملاصق:</span> ${editable(L.adjacent || '')}</td>
+        </tr>
+      </table>`;
+  }
+}
+
+/* ================= مكتبة البحث ================= */
+const searchInput = document.getElementById('lessonSearch');
+const suggestBox = document.getElementById('suggestBox');
+const notFound = document.getElementById('notFound');
+const libNote = document.getElementById('libNote');
+
+function updateLibNote(){
+  const count = LESSONS.filter(l => l.template === state.template).length;
+  libNote.textContent = `المكتبة تضم حاليًا ${count} دروس لهذا النموذج — وسيُفتح نموذج فارغ لأي درس غير موجود.`;
+}
+
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.trim();
+  suggestBox.innerHTML = '';
+  if(!q){ suggestBox.classList.remove('show'); notFound.classList.remove('show'); return; }
+  const hits = LESSONS.filter(l =>
+    l.template === state.template &&
+    (l.title.includes(q) || q.includes(l.title) || l.unit.includes(q))
+  ).slice(0,6);
+  if(hits.length){
+    notFound.classList.remove('show');
+    hits.forEach(l => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.innerHTML = `${esc(l.title)}<span class="src">${esc(l.unit)}</span>`;
+      b.onclick = () => { render(l); suggestBox.classList.remove('show'); };
+      suggestBox.appendChild(b);
+    });
+    suggestBox.classList.add('show');
+  } else {
+    suggestBox.classList.remove('show');
+    notFound.classList.add('show');
+  }
+});
+
+document.getElementById('blankLesson').onclick = () => {
+  render({ template: state.template, title: searchInput.value.trim(), unit:'', standard:'', page:'',
+    opening:'', concepts:[], facts:[], generalization:'', objectives:[], activities:[],
+    assessment:[], essay:[], aids:[], value:'', adjacent:'', closing:'' });
+  notFound.classList.remove('show');
+};
+
+/* ================= تبديل النموذج ================= */
+const tplSocial = document.getElementById('tplSocial');
+const tplPsych = document.getElementById('tplPsych');
+function setTemplate(t){
+  state.template = t;
+  tplSocial.classList.toggle('active', t==='social');
+  tplPsych.classList.toggle('active', t==='psych');
+  updateLibNote();
+  render(null);
+}
+tplSocial.onclick = () => setTemplate('social');
+tplPsych.onclick = () => setTemplate('psych');
+
+/* ================= بيانات الحصة ================= */
+['fDay','fDate','fPeriod','fClass'].forEach(id => {
+  document.getElementById(id).addEventListener('input', syncHead);
+  document.getElementById(id).addEventListener('change', syncHead);
+});
+function syncHead(){
+  const tds = sheet.querySelectorAll('.head-cells td [contenteditable]');
+  if(tds.length === 4){
+    tds[0].textContent = document.getElementById('fDay').value;
+    tds[1].textContent = document.getElementById('fDate').value;
+    tds[2].textContent = document.getElementById('fPeriod').value;
+    tds[3].textContent = document.getElementById('fClass').value;
+  }
+}
+
+/* ================= أزرار القوائم (إضافة/حذف) ================= */
+sheet.addEventListener('click', e => {
+  if(e.target.classList.contains('li-add')){
+    const list = e.target.closest('td').querySelector('.edit-list');
+    const li = document.createElement('li');
+    li.innerHTML = `<span contenteditable="true"></span><button type="button" class="li-del no-print" title="حذف السطر">×</button>`;
+    list.appendChild(li);
+    li.querySelector('span').focus();
+  }
+  if(e.target.classList.contains('li-del')){
+    e.target.closest('li').remove();
+  }
+});
+
+/* ================= بنك الأنشطة ================= */
+const bankBox = document.getElementById('activityBank');
+ACTIVITY_BANK.forEach(a => {
+  const c = document.createElement('button');
+  c.type = 'button'; c.className = 'chip'; c.textContent = a;
+  c.onclick = () => {
+    // أضف إلى قائمة أنشطة النمو (العمود الثالث في الجدول الرئيسي)
+    const headerCells = [...sheet.querySelectorAll('.ftable th')];
+    const idx = headerCells.findIndex(h => h.textContent.includes('أنشطة النمو'));
+    if(idx === -1) return;
+    const mainTable = headerCells[idx].closest('.ftable');
+    const cell = mainTable.querySelectorAll('tr:last-child td')[idx];
+    if(!cell) return;
+    const list = cell.querySelector('.edit-list');
+    const li = document.createElement('li');
+    li.innerHTML = `<span contenteditable="true">${esc(a)}</span><button type="button" class="li-del no-print" title="حذف السطر">×</button>`;
+    list.appendChild(li);
+    li.scrollIntoView({behavior:'smooth', block:'center'});
+  };
+  bankBox.appendChild(c);
+});
+
+/* ================= الطباعة والحفظ ================= */
+document.getElementById('printBtn').onclick = () => window.print();
+
+document.getElementById('clearBtn').onclick = () => {
+  if(confirm('سيُمسح كل محتوى النموذج الحالي. متابعة؟')) render(null);
+};
+
+const SAVE_KEY = 'tahdeeri.saves.v1';
+function getSaves(){ try{ return JSON.parse(localStorage.getItem(SAVE_KEY)) || [] }catch(e){ return [] } }
+function setSaves(v){ localStorage.setItem(SAVE_KEY, JSON.stringify(v)) }
+
+document.getElementById('saveBtn').onclick = () => {
+  const name = prompt('اسم هذا التحضير (مثال: الغوص — الأحد الحصة الأولى):');
+  if(!name) return;
+  const saves = getSaves();
+  saves.unshift({ name, template: state.template, html: sheet.innerHTML, ts: Date.now() });
+  setSaves(saves.slice(0,30));
+  renderSaves();
+};
+
+function renderSaves(){
+  const box = document.getElementById('savesList');
+  box.innerHTML = '';
+  const saves = getSaves();
+  if(!saves.length){ box.innerHTML = '<p class="empty-note">لا توجد تحضيرات محفوظة بعد — تُحفظ في هذا المتصفح فقط.</p>'; return; }
+  saves.forEach((s,i) => {
+    const row = document.createElement('div');
+    row.className = 'save-row';
+    row.innerHTML = `<span class="nm">${esc(s.name)}</span>
+      <button type="button" class="load">فتح</button>
+      <button type="button" class="del">حذف</button>`;
+    row.querySelector('.load').onclick = () => {
+      setTemplateKeep(s.template);
+      sheet.innerHTML = s.html;
+    };
+    row.querySelector('.del').onclick = () => {
+      const arr = getSaves(); arr.splice(i,1); setSaves(arr); renderSaves();
+    };
+    box.appendChild(row);
+  });
+}
+function setTemplateKeep(t){
+  state.template = t;
+  tplSocial.classList.toggle('active', t==='social');
+  tplPsych.classList.toggle('active', t==='psych');
+  updateLibNote();
+}
+
+/* ================= تهيئة ================= */
+(function init(){
+  const d = new Date();
+  document.getElementById('fDate').value =
+    `${d.getDate()} / ${d.getMonth()+1} / ${d.getFullYear()} م`;
+  updateLibNote();
+  // دعم فتح درس مباشرة عبر الرابط: #lesson=<id>
+  const m = location.hash.match(/lesson=([\w-]+)/);
+  const pre = m && LESSONS.find(l => l.id === m[1]);
+  if(pre){ setTemplateKeep(pre.template); render(pre); }
+  else render(null);
+  renderSaves();
+})();
+</script>
+</body>
+</html>
