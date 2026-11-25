@@ -120,6 +120,8 @@
   .paper-wrap{min-width:0}
   .paper-toolbar{
     display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:12px;
+    background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+    padding:10px 14px; box-shadow:0 6px 24px rgba(20,60,40,.06);
   }
   .paper-toolbar .hint{font-size:.85rem; color:var(--muted); flex:1}
   .paper{
@@ -669,7 +671,7 @@ function render(lesson){
   const cls = document.getElementById('fClass').value;
 
   const headRow = `
-    <table class="ftable head-cells" style="width:46%; margin-right:auto; margin-bottom:8px">
+    <table class="ftable head-cells" style="width:46%; margin-left:auto; margin-bottom:8px">
       <tr><th>اليوم</th><th>التاريخ</th><th>الحصة</th><th>الصف</th></tr>
       <tr>
         <td>${editable(day)}</td><td>${editable(date)}</td>
