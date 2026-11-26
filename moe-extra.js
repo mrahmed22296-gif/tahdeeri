@@ -3006,5 +3006,163 @@ window.MOE_EXTRA = [
    "تسليم المشاريع ومناقشتها وتوثيقها"
   ]
  }
+},
+ {
+ "grade": 11,
+ "g": "الحادي عشر",
+ "template": "psych",
+ "subject": "اللغة الفرنسية",
+ "units": {
+  "Premier contact": [
+   "Socioculturel: Identifier les deux pays / les deux langues / apprendre l'alphabet; Lexique: La France, Paris + Le Koweït",
+   "Socioculturel: réviser l'alphabet / apprendre les nombres / le matériel scolaire / les couleurs",
+   "Socioculturel: apprendre les temps qu'il fait; Lexique: Les jours, Les saisons et les 12 mois",
+   "Socioculturel: termes courants pour désigner les personnes; Lexique: les pronoms sujets / dans la classe"
+  ],
+  "Dossier 1: Une rencontre": [
+   "Les membres de la famille: Présenter la famille Martin et Mansour / Présenter votre famille",
+   "Compréhension globale du dialogue",
+   "Vocabulaire 1",
+   "Compréhension orale",
+   "Grammaire 1: Les adjectifs de nationalité",
+   "Grammaire 2: Conjugaison: verbe parler, habiter et s'appeler",
+   "Grammaire 3: Conjugaison: verbe être",
+   "Communication 1: Saluer / se présenter par le nom et la nationalité",
+   "Communication 2: Se présenter par la profession / se quitter",
+   "Expression orale (Jeu de rôle)",
+   "Expression écrite 1",
+   "Expression écrite 2",
+   "Lecture; Phonétique: [b] et [p]",
+   "Projet de classe: Choisir un personnage et le présenter"
+  ],
+  "Dossier 2: Une invitation": [
+   "Compréhension globale du dialogue",
+   "Vocabulaire 1",
+   "Vocabulaire 2",
+   "Compréhension orale",
+   "Grammaire 1: Les articles définis et indéfinis",
+   "Grammaire 2: Les adjectifs possessifs",
+   "Grammaire 3: Conjugaison: verbes aimer, préférer, adorer, détester et jouer",
+   "Grammaire 4: Conjugaison: verbe aller et avoir",
+   "Communication 1: Demander et répondre à une nouvelle / Demander et dire l'âge",
+   "Communication 2: Exprimer ses goûts et ses loisirs",
+   "Expression orale (Jeu de rôle)",
+   "Expression écrite 1",
+   "Expression écrite 2",
+   "Lecture; Phonétique: [f] et [v]",
+   "Projet de classe: Préparer une fiche / présenter une activité",
+   "Révision générale (Dossiers 0, 1 et 2)"
+  ],
+  "Dossier 3: Une réservation": [
+   "Compréhension globale du dialogue",
+   "Vocabulaire 1",
+   "Vocabulaire 2",
+   "Compréhension orale",
+   "Grammaire 1: Les mots interrogatifs 1",
+   "Grammaire 2: Les mots interrogatifs 2",
+   "Grammaire 3: L'infinitif + verbe vouloir et pouvoir",
+   "Communication 1: S'informer poliment sur la réservation / Demander et dire l'heure",
+   "Communication 2: Demander et dire le prix",
+   "Expression orale (Jeu de rôle)",
+   "Expression écrite 1",
+   "Expression écrite 2",
+   "Lecture: Le voyage en été; Phonétique: [i], [e] et [ə]",
+   "Projet de classe: Faire une réservation",
+   "Révision générale (Dossier 3)"
+  ],
+  "Dossier 4: Le départ": [
+   "Compréhension globale du dialogue",
+   "Vocabulaire 1",
+   "Vocabulaire 2",
+   "Compréhension orale",
+   "Grammaire 1: Les pronoms personnels COD",
+   "Grammaire 2: Les prépositions de lieu",
+   "Grammaire 3: Conjugaison: verbe faire et prendre",
+   "Communication 1: S'informer sur les bagages / parler des habitudes simples",
+   "Communication 2: Se situer",
+   "Expression orale (Jeu de rôle)",
+   "Expression écrite 1",
+   "Expression écrite 2",
+   "Lecture: Les couleurs; Phonétique: [s] et [z]",
+   "Projet de classe: Préparer un agenda",
+   "Révision générale (Dossier 4)"
+  ]
+ }
+},
+ {
+ "grade": 12,
+ "g": "الثاني عشر",
+ "template": "psych",
+ "subject": "اللغة الفرنسية",
+ "units": {
+  "Dossier 1: Des souvenirs": [
+   "Document 1: Compréhension globale",
+   "Document 1: Lexique",
+   "Document 1: Grammaire 1: Conjugaison / adjectifs de nationalité et profession (Masculin et Féminin)",
+   "Document 1: Grammaire 2: Conjugaison",
+   "Document 1: Communication et production orale",
+   "Document 1: Production écrite",
+   "Document 2: Compréhension globale",
+   "Document 2: Lexique",
+   "Document 2: Grammaire 1: Le passé composé 1",
+   "Document 2: Grammaire 2: Le passé composé 2",
+   "Document 2: Communication et production orale",
+   "Document 2: Production écrite",
+   "Document 3: Compréhension globale",
+   "Document 3: Lexique",
+   "Document 3: Grammaire 1: Les articles",
+   "Document 3: Grammaire 2: verbe aller + prépositions",
+   "Document 3: Communication et production orale",
+   "Document 3: Production écrite",
+   "Document 4: Compréhension globale",
+   "Document 4: Lexique",
+   "Document 4: Grammaire 1: Le futur simple",
+   "Document 4: Grammaire 2: L'infinitif",
+   "Document 4: Communication et production orale",
+   "Document 4: Production écrite",
+   "Révision générale (Dossier 1)"
+  ],
+  "Dossier 2: Des études": [
+   "Compréhension globale",
+   "Lexique 1",
+   "Lexique 2",
+   "Compréhension orale",
+   "Grammaire 1: Conjugaison: verbe étudier et apprendre",
+   "Grammaire 2: Le pronom (en)",
+   "Grammaire 3: Le futur proche",
+   "Communication 1: Demander de l'aide à quelqu'un / Accepter ou refuser",
+   "Communication 2: Parler de l'emploi du temps / Conseiller",
+   "Production orale",
+   "Production écrite 1",
+   "Production écrite 2",
+   "Atelier 1: Compréhension globale d'un document écrit",
+   "Atelier 2: Compréhension détaillée d'un document écrit",
+   "Interaction écrite 1",
+   "Interaction écrite 2",
+   "Révision générale (Dossier 2)"
+  ],
+  "Dossier 3: Une soirée": [
+   "Compréhension globale",
+   "Lexique 1",
+   "Lexique 2",
+   "Compréhension orale",
+   "Grammaire 1: Les formes de la phrase",
+   "Grammaire 2: Les adjectifs qualificatifs",
+   "Communication 1: Décrire l'aspect d'une personne",
+   "Communication 2: Présenter et décrire un film ou une pièce de théâtre",
+   "Production orale",
+   "Production écrite 1",
+   "Production écrite 2",
+   "Atelier 1: Compréhension globale d'un document écrit",
+   "Atelier 2: Compréhension détaillée d'un document écrit",
+   "Interaction écrite 1",
+   "Révision générale (Dossier 3)"
+  ],
+  "Vers le DELF junior": [
+   "Compréhension des écrits",
+   "Production écrite",
+   "Révision générale: Présenter un personnage + Courriel"
+  ]
+ }
 }
 ];
