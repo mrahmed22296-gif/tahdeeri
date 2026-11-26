@@ -186,7 +186,7 @@
     .layout{display:block; margin:0; padding:0; max-width:none}
     .paper-wrap{position:static !important; max-height:none !important; overflow:visible !important}
     .paper{border:0; box-shadow:none; padding:0; overflow:visible; border-radius:0}
-    .sheet{min-width:0}
+    .sheet{min-width:0; zoom:1 !important}
     .sheet [contenteditable]:hover,.sheet [contenteditable]:focus{background:none; box-shadow:none}
     .ftable td,.ftable th{font-size:9.5pt; line-height:1.45; padding:2px 4px}
     .sheet ol,.sheet ul{padding-right:14px; margin:0}
@@ -847,6 +847,17 @@ function render(lesson){
   }
 }
 
+
+function fitSheet(){
+  const p = sheet.parentElement; if(!p) return;
+  sheet.style.zoom = '';
+  const cs = getComputedStyle(p);
+  const avail = p.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+  if(avail > 0 && avail < 860){ sheet.style.zoom = Math.max(0.62, avail/860).toFixed(3); }
+}
+window.addEventListener('resize', fitSheet);
+window.addEventListener('load', fitSheet);
+setTimeout(fitSheet, 300);
 /* ================= مكتبة البحث ================= */
 const searchInput = document.getElementById('lessonSearch');
 const suggestBox = document.getElementById('suggestBox');
@@ -1372,6 +1383,7 @@ function safeFileTitle(){
 }
 function cleanedSheetClone(){
   const clone = sheet.cloneNode(true);
+  clone.style.zoom = '';
   clone.querySelectorAll('.no-print,.row-tools,.li-del').forEach(e=>e.remove());
   clone.querySelectorAll('[contenteditable]').forEach(e=>{ e.removeAttribute('contenteditable'); e.removeAttribute('data-ph'); });
   flattenLists(clone);
