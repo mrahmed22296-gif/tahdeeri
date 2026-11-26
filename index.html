@@ -1268,7 +1268,33 @@ function cleanedSheetClone(){
   const clone = sheet.cloneNode(true);
   clone.querySelectorAll('.no-print,.row-tools,.li-del').forEach(e=>e.remove());
   clone.querySelectorAll('[contenteditable]').forEach(e=>{ e.removeAttribute('contenteditable'); e.removeAttribute('data-ph'); });
+  flattenLists(clone);
   return clone;
+}
+/* PDF/Word export: replace native list markers (html2canvas and Word misplace them in RTL)
+   with an explicit, isolated marker inside each item; drop empty placeholder items */
+function flattenLists(root){
+  root.querySelectorAll('ol,ul').forEach(list=>{
+    const isOl = list.tagName === 'OL';
+    let n = 0;
+    Array.from(list.children).forEach(li=>{
+      if (li.tagName !== 'LI') return;
+      if (!li.textContent.trim()) { li.remove(); return; }
+      n++;
+      li.style.listStyle = 'none';
+      li.style.display = 'block';
+      const mk = document.createElement('span');
+      mk.setAttribute('dir','ltr');
+      mk.style.cssText = 'display:inline-block; unicode-bidi:isolate; min-width:1.5em; text-align:right; margin-left:2px';
+      mk.textContent = isOl ? (n + '.') : '\u2022';
+      li.insertBefore(mk, li.firstChild);
+    });
+    list.style.listStyle = 'none';
+    list.style.paddingRight = '0';
+    list.style.paddingInlineStart = '0';
+    list.style.margin = '0';
+    if (!list.children.length) list.remove();
+  });
 }
 function buildWordHtml(){
   const clone = cleanedSheetClone();
