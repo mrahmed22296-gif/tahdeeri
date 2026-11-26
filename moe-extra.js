@@ -3164,5 +3164,101 @@ window.MOE_EXTRA = [
    "Révision générale: Présenter un personnage + Courriel"
   ]
  }
+},
+ {
+ "grade": 11,
+ "g": "الحادي عشر",
+ "template": "psych",
+ "subject": "اللغة الإنجليزية",
+ "units": {
+  "Unit 1 Festivals and Occasions": [
+   "L1-2: Reading, an article about two festivals; theme vocabulary",
+   "L4-5: Grammar: modal verbs, intensifiers, phrasal verbs with go, parts of speech; Reading, a short story; Pronunciation: elision",
+   "L6: Language Practice (WB 6-7)",
+   "L7-8: Listening, festival experiences; Speaking: religious occasions; Listening: a description of the Hajj; Writing: a festival report",
+   "L9: Theme essay, descriptive writing (WB 8-9)"
+  ],
+  "Unit 2 Family Celebrations": [
+   "L1-2: Listening, a family celebration; Speaking: describing a family celebration",
+   "L4-5: Grammar: simple past and past perfect; Vocabulary: derivatives, compound nouns, words with more than one meaning; Pronunciation",
+   "L6: Language Practice (WB 12-13)",
+   "L7-8: Reading, an email invitation; Writing: an informal invitation email; Useful Language: inviting, polite requests; Listening: a talk about the Australian Aborigines",
+   "L9: Theme essay (WB 14-15)"
+  ],
+  "Unit 3 Meeting Places": [
+   "L1-2: Reading, a fact file and an article about coffee houses",
+   "L4-5: Grammar: Third Conditional; Vocabulary: verbs related to talking; Pronunciation: stress in phrases",
+   "L6: Language Practice (WB 18-19)",
+   "L7-8: Writing, a description of a favourite meeting place; Listening, a telephone conversation; Speaking: suggestions",
+   "L9: Writing, a description of two places (WB 20-21)",
+   "Focus on SB 28: Reading, Meeting Friends in Kuwait; commas after adverbs and conjunctions"
+  ],
+  "Unit 4 Communicating": [
+   "L1-2: Reading, the skills of effective listening; Listening, barriers to effective communication",
+   "L4-5: Grammar: articles, correlative and subordinating conjunctions; Vocabulary: quantity words, place names and articles; Speaking: means of communication; Pronunciation: stress in verbs and nouns",
+   "L6: Language Practice (WB 28-29)",
+   "L7-8: Reading and Writing, a formal letter of application to a university; Useful Language: giving information, explaining choices, expressing gratitude",
+   "L9: Theme essay (WB 30-31)"
+  ],
+  "Unit 5 Writing": [
+   "L1-2: Reading and listening, an article about the history of writing",
+   "L4-5: Grammar: present perfect simple and continuous, for and since; Pronunciation: stress in phrasal verbs and compound nouns",
+   "L6: Language Practice (WB 34-35)",
+   "L7-8: Planning and Writing, an essay about languages; Listening, an interview with a Kuwaiti poet; Speaking: types of writing, opinions, interviews",
+   "L9: Theme essay (WB 36-37)"
+  ],
+  "Unit 6 On the Phone": [
+   "L1-2: Reading, an article about using mobile phones; Listening, three conversations about mobile phones",
+   "L3: Reading, a table about mobile phones; Over To You (WB 38-39)",
+   "L4-5: Grammar: question tags and imperatives; Vocabulary: communicating; Pronunciation: intonation in question tags",
+   "L6: Language Practice (WB 40-41)",
+   "L7-8: Listening, instructions for using a mobile phone; Writing, a set of instructions; Useful Language: giving instructions",
+   "L9: Theme essay (WB 42-43)",
+   "Focus on SB 50: Reading, an article about Sheikha Suad Mohammed Al-Sabah; metaphors and similes"
+  ]
+ }
+},
+ {
+ "grade": 12,
+ "g": "الثاني عشر",
+ "template": "psych",
+ "subject": "اللغة الإنجليزية",
+ "units": {
+  "Unit 1 The Law": [
+   "L1-2: Listening, a lecture about law-making; Speaking: discussing the law, expressing opinion",
+   "L4-5: Grammar: present perfect simple and continuous, comparative and contrastive connectors; Vocabulary: words with more than one meaning, nouns and adjectives",
+   "L6: Language Practice (WB 6-7)",
+   "L7-8: Reading, an essay about legal disputes; Speaking: making conclusions, agreeing and disagreeing; Writing: an essay on driving fast; Useful Language",
+   "L9: Planning and writing an essay on using work computers for personal purposes (WB 8-9)"
+  ],
+  "Unit 2 Migration": [
+   "L1-2: Reading, an article about migration; Speaking: expressing opinion",
+   "L4-5: Grammar: past perfect simple (after, before, by the time); Vocabulary: prefixes and suffixes, word families; Pronunciation: stress for emphasis",
+   "L6: Language Practice (WB 12-13)",
+   "L7-8: Speaking: important events in your life; Listening: a talk on emigration; Writing: an email describing a life-changing event; Useful Language",
+   "L9: Theme-related essay (WB 14-15)"
+  ],
+  "Unit 3 Human Values": [
+   "L1-2: Reading, an article about Shared Human Values; Speaking: giving opinions, agreeing and disagreeing",
+   "L3: Reading, The Kuwait Red Crescent Society; Over To You (WB 16-17)",
+   "L4-5: Grammar: adverbs of manner, if conditionals types 0-3; Vocabulary: idioms with over",
+   "L6: Language Practice (WB 18-19)",
+   "L7-8: Listening, a charity radio advert; Speaking: a radio broadcast; Useful Language: asking for help, persuading; Writing: a newsletter",
+   "L9: Theme-related essay (WB 20-21)",
+   "Focus on SB 32: Reading, The Foreign Diplomatic Institute; compound words"
+  ],
+  "Unit 4 The Earth at Risk": [
+   "L1-2: Reading, a factfile and an article about the spread of the desert; Speaking: expressing opinion",
+   "L4-5: Grammar: subordinate clauses of purpose and result; Vocabulary: prefixes; Pronunciation: rhythm",
+   "L6: Language Practice (WB 28-29)",
+   "L7-8: Speaking: describing photographs; Reading: an email on water shortages; Writing: a reply to an email",
+   "L9: Theme-related essay (WB 30-31)"
+  ],
+  "Unit 5 Precious Resources": [
+   "L1-2: Listening, a discussion about waste products; Speaking: recycling and environmental issues",
+   "L4-5: Grammar: wish + would, wish + past simple, wish + past perfect, phrasal verbs; Vocabulary: colour idioms, three-part phrasal verbs",
+   "L6: Language Practice (WB 34-35)"
+  ]
+ }
 }
 ];
