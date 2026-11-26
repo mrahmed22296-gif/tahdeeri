@@ -220,6 +220,8 @@
       <details id="moePick" style="margin-bottom:10px">
         <summary style="cursor:pointer;font-weight:700">📚 اختر الدرس من كتاب الوزارة (بدل ما تكتبه)</summary>
         <div style="display:grid;gap:6px;margin-top:8px">
+          <input type="text" id="moeSearch" placeholder="🔎 ابحث في كل المكتبة (عنوان الدرس أو المادة أو الصف)" autocomplete="off">
+          <div id="moeLists" style="display:grid;gap:4px"></div>
           <select id="pickGrade"><option value="">١) الصف الدراسي…</option></select>
           <select id="pickSubject" disabled><option value="">٢) المادة…</option></select>
           <select id="pickUnit" disabled><option value="">٣) الوحدة / الفصل…</option></select>
@@ -997,6 +999,70 @@ pickLesson.addEventListener('change', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 });
+
+(function(){
+  const FAV='tahdeeri_moe_fav', REC='tahdeeri_moe_rec';
+  const ld=k=>{try{return JSON.parse(localStorage.getItem(k))||[]}catch(e){return []}};
+  const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+  const keys=()=>Object.keys(MOE_BOOKS);
+  let IDX=null;
+  function build(){
+    IDX=[];
+    keys().forEach(gk=>{const b=MOE_BOOKS[gk];
+      Object.keys(b.subjects).forEach(sub=>{const us=b.subjects[sub];
+        Object.keys(us).forEach(u=>us[u].forEach(l=>IDX.push([gk,sub,u,l,b.g])));});});
+  }
+  const norm=t=>String(t).replace(/[\u064B-\u0652\u0640]/g,'').replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').toLowerCase();
+  function go(r){
+    pickGrade.selectedIndex=keys().indexOf(r[0])+1; pickGrade.dispatchEvent(new Event('change'));
+    pickSubject.value=r[1]; pickSubject.dispatchEvent(new Event('change'));
+    pickUnit.value=r[2]; pickUnit.dispatchEvent(new Event('change'));
+    pickLesson.value=r[3]; pickLesson.dispatchEvent(new Event('change'));
+  }
+  const same=(a,b)=>a[0]==b[0]&&a[1]==b[1]&&a[2]==b[2]&&a[3]==b[3];
+  function row(r,box){
+    const d=document.createElement('div'); d.style.cssText='display:flex;gap:6px;align-items:center';
+    const st=document.createElement('button'); st.type='button'; st.style.cssText='border:0;background:none;cursor:pointer;font-size:18px';
+    const isF=()=>ld(FAV).some(x=>same(x,r));
+    st.textContent=isF()?'★':'☆'; st.title='مفضلة';
+    st.onclick=()=>{let f=ld(FAV); f=isF()?f.filter(x=>!same(x,r)):f.concat([r]); sv(FAV,f); lists(); doSearch();};
+    const b=document.createElement('button'); b.type='button';
+    b.style.cssText='flex:1;text-align:right;padding:6px 8px;border:1px solid #ccc;border-radius:8px;background:transparent;color:inherit;cursor:pointer;font-family:inherit';
+    b.textContent=r[3]+' — '+r[1]+' (الصف '+r[4]+')';
+    b.onclick=()=>go(r);
+    d.appendChild(st); d.appendChild(b); box.appendChild(d);
+  }
+  function section(title,arr,box){
+    if(!arr.length) return;
+    const h=document.createElement('div'); h.style.cssText='font-weight:700;margin-top:4px'; h.textContent=title; box.appendChild(h);
+    arr.forEach(r=>row(r,box));
+  }
+  function lists(){
+    const box=document.getElementById('moeLists'); if(!box) return;
+    if(document.getElementById('moeSearch').value.trim()) return;
+    box.innerHTML='';
+    section('⭐ المفضلة',ld(FAV),box);
+    section('🕘 استخدمتها مؤخرًا',ld(REC),box);
+  }
+  function doSearch(){
+    const q=norm(document.getElementById('moeSearch').value.trim());
+    const box=document.getElementById('moeLists');
+    if(!q){lists();return;}
+    if(!IDX) build();
+    const w=q.split(/\s+/);
+    const res=IDX.filter(r=>{const t=norm(r[3]+' '+r[2]+' '+r[1]+' الصف '+r[4]);return w.every(x=>t.includes(x));}).slice(0,30);
+    box.innerHTML='';
+    if(!res.length){const p=document.createElement('p');p.className='empty-note';p.textContent='ما لقيت نتيجة. تقدر تكتب العنوان يدويًا في الأسفل.';box.appendChild(p);return;}
+    res.forEach(r=>row(r,box));
+  }
+  document.getElementById('moeSearch').addEventListener('input',doSearch);
+  pickLesson.addEventListener('change',()=>{
+    const gk=keys()[pickGrade.selectedIndex-1]; if(!gk||!pickLesson.value) return;
+    const r=[gk,pickSubject.value,pickUnit.value,pickLesson.value,MOE_BOOKS[gk].g];
+    sv(REC,[r].concat(ld(REC).filter(x=>!same(x,r))).slice(0,8)); lists();
+  });
+  lists();
+})();
 
 /* ================= تبديل النموذج ================= */
 const tplSocial = document.getElementById('tplSocial');
