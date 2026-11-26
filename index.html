@@ -287,6 +287,10 @@
       <button class="btn btn-ghost" id="subBtn" type="button">💎 اشتراك تحضيري — دينار شهريًا</button>
       <button class="btn btn-ghost" id="saveBtn" type="button">💾 حفظ نسخة في المتصفح</button>
       <button class="btn btn-danger" id="clearBtn" type="button">مسح كل الحقول</button>
+      <button class="btn btn-ghost" id="undoBtn" type="button">↶ تراجع</button>
+      <button class="btn btn-ghost" id="redoBtn" type="button">↷ إعادة</button>
+      <button class="btn btn-ghost" id="dupBtn" type="button">📑 حفظ كنسخة جديدة</button>
+      <div id="draftNote" class="empty-note" style="margin:6px 0"></div>
       <div id="savesList"></div>
     </div>
   </div>
@@ -1497,6 +1501,44 @@ document.getElementById('pdfBtn').onclick = async () => {
     btn.disabled = false; btn.textContent = oldTxt;
   }
 };
+
+/* ================= المحرر: حفظ تلقائي + تراجع/إعادة ================= */
+(function(){
+  const DK='tahdeeri_draft';
+  const note=document.getElementById('draftNote');
+  let hist=[], idx=-1, restoring=false, timer=null;
+  const snap=()=>({t:state.template, html:sheet.innerHTML});
+  const textOf=h=>{const d=document.createElement('div');d.innerHTML=h;return d.textContent.replace(/[\s+×0-9.]/g,'');};
+  function push(){
+    const c=snap(); if(hist[idx] && hist[idx].html===c.html && hist[idx].t===c.t) return;
+    hist=hist.slice(0,idx+1); hist.push(c); if(hist.length>60) hist.shift(); idx=hist.length-1;
+    try{ localStorage.setItem(DK, JSON.stringify({template:c.t, html:c.html, ts:Date.now()})); 
+      const d=new Date(); note.textContent='تم الحفظ تلقائيًا ✓ '+d.toLocaleTimeString('ar-KW',{hour:'2-digit',minute:'2-digit'}); }catch(e){}
+  }
+  function apply(c){
+    restoring=true; setTemplateKeep(c.t); sheet.innerHTML=c.html; 
+    setTimeout(()=>{restoring=false;},50);
+  }
+  new MutationObserver(()=>{ if(restoring) return; clearTimeout(timer); timer=setTimeout(push,700); })
+    .observe(sheet,{subtree:true,childList:true,characterData:true});
+  document.getElementById('undoBtn').onclick=()=>{ clearTimeout(timer); push(); if(idx>0){ idx--; apply(hist[idx]); note.textContent='تم التراجع'; } };
+  document.getElementById('redoBtn').onclick=()=>{ if(idx<hist.length-1){ idx++; apply(hist[idx]); note.textContent='تمت الإعادة'; } };
+  document.getElementById('dupBtn').onclick=()=>{
+    const base=(searchInput.value.trim()||'تحضير')+' (نسخة)';
+    const name=prompt('اسم النسخة الجديدة:', base); if(!name) return;
+    const saves=getSaves(); saves.unshift({name, template:state.template, html:sheet.innerHTML, ts:Date.now()});
+    setSaves(saves.slice(0,30)); renderSaves(); note.textContent='تم حفظ نسخة جديدة ✓';
+  };
+  hist=[snap()]; idx=0;
+  try{
+    const d=JSON.parse(localStorage.getItem(DK)||'null');
+    if(d && d.html && textOf(d.html).length>20){
+      const b=document.createElement('button'); b.type='button'; b.className='btn btn-ghost'; b.textContent='♻️ استرجاع آخر مسودة ('+new Date(d.ts).toLocaleString('ar-KW',{hour:'2-digit',minute:'2-digit',day:'numeric',month:'numeric'})+')';
+      b.onclick=()=>{ apply({t:d.template,html:d.html}); push(); b.remove(); };
+      note.parentNode.insertBefore(b,note);
+    }
+  }catch(e){}
+})();
 </script>
 </body>
 </html>
