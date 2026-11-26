@@ -1194,5 +1194,183 @@ window.MOE_EXTRA = [
     "من سورة الكهف (21-45)"
    ]
   }
+ },
+ {
+  "grade": 10,
+  "g": "العاشر",
+  "template": "psych",
+  "subject": "اللغة الإنجليزية",
+  "units": {
+   "Unit One: The Science of Nutrition": [
+    "Lesson One - Opener Food Log Reflection",
+    "Lesson Two - Reading: The Evolution of the Kuwaiti Diet",
+    "Lesson Three - Grammar: The Present Simple & Adverbs of Frequency",
+    "Lesson Four - Listening: The Heritage Lunchbox",
+    "Lesson Five - Speaking: International School Meal Systems",
+    "Lesson Six - Writing: Smart Canteen Swaps",
+    "Lesson Seven - Reading: Personalised Nutrition",
+    "Lesson Eight - Grammar: Present Simple Continuous & The Order of Adjectives",
+    "Lesson Nine - Listening: The Mediterranean Secret",
+    "Lesson Ten - Speaking: Food Marketing",
+    "Lesson Eleven - Writing: Mindful Eating"
+   ],
+   "Unit Two: Choices and Change": [
+    "Lesson One - Opener Sustainable Living",
+    "Lesson Two - Reading: The Shagaya Renewable Energy Park",
+    "Lesson Three - Grammar: The Present Perfect Simple",
+    "Lesson Four - Listening: Smart Homes, Smart Choices",
+    "Lesson Five - Speaking: Powering a Greener GCC",
+    "Lesson Six - Writing: Power with Purpose",
+    "Lesson Seven - Reading: Think Before You Throw",
+    "Lesson Eight - Grammar: 1st Conditionals and Modal Verbs",
+    "Lesson Nine - Listening: Rethinking Waste Worldwide",
+    "Lesson Ten - Speaking: Throw-away Culture",
+    "Lesson Eleven - Writing: Habits for a Better World"
+   ],
+   "Unit Three: Exploring Heritage": [
+    "Lesson One - Opener Stamps That Tell Our Story",
+    "Lesson Two - Reading: Cultural Ambassadors",
+    "Lesson Three - Grammar: Non-defining Relative Pronouns and Clauses",
+    "Lesson Four - Listening: Stories Beyond the Walls",
+    "Lesson Five - Speaking: Big Dreamers",
+    "Lesson Six - Writing: Honour, Inspire, Remember",
+    "Lesson Seven - Reading: Can Technology Save Heritage?",
+    "Lesson Eight - Grammar: The Past Simple & Past Continuous",
+    "Lesson Nine - Listening: Continuous Culture: Sadu Weaving",
+    "Lesson Ten - Speaking: Hidden Gems",
+    "Lesson Eleven - Writing: Preserving Heritage"
+   ],
+   "Unit Four: Citizenship": [
+    "Lesson One - Opener What Makes a Good Citizen?",
+    "Lesson Two - Reading: Timeless Growth",
+    "Lesson Three - Grammar: Reported Speech",
+    "Lesson Four - Listening: An Address to the Nation",
+    "Lesson Five - Speaking: The Golden Rule",
+    "Lesson Six - Writing: The Digital Diwan",
+    "Lesson Seven - Reading: Law, Values, and Universal Citizenship",
+    "Lesson Eight - Grammar: Future & Countable and Uncountable Nouns",
+    "Lesson Nine - Listening: Living Monuments",
+    "Lesson Ten - Speaking: The Invisible Safeguard",
+    "Lesson Eleven - Writing: National Duty"
+   ]
+  }
+ },
+ {
+  "grade": 10,
+  "g": "العاشر",
+  "template": "psych",
+  "subject": "الرياضيات",
+  "units": {
+   "الفصل 1 (العد والجبر)": [
+    "(1-1) دالة القيمة المطلقة",
+    "(1-2) حل معادلة القيمة المطلقة",
+    "(1-3) حل معادلة من الدرجة الثانية في متغير واحد (جبرياً وبيانياً)",
+    "(1-4) إيجاد مجموع وناتج ضرب جذري معادلة تربيعية وتكوين المعادلة التربيعية بمعلومية جذريها",
+    "(1-5) حل متباينة من الدرجة الثانية"
+   ],
+   "الفصل 2 (التناسب والتشابه)": [
+    "(2-1) التناسب",
+    "(2-2) تشابه المضلعات",
+    "(2-3) تشابه المثلثات",
+    "(2-4) التشابه في المثلثات القائمة الزاوية",
+    "(2-5) التناسبات والمثلثات المتشابهة"
+   ],
+   "الفصل 3 (حساب المثلثات)": [
+    "(3-1) النسب المثلثية الأساسية ومقلوباتها",
+    "(3-2) حل المثلث القائم",
+    "(3-3) زاوية الارتفاع وزاوية الانخفاض",
+    "(3-4) الدوال المثلثية (الدوال الدائرية)",
+    "(3-5) العلاقات بين النسب المثلثية",
+    "(3-6) حل المعادلات المثلثية"
+   ],
+   "الفصل 4 (المنطق والإحصاء)": [
+    "(4-1) المنطق والتقارير",
+    "(4-2) أدوات الربط",
+    "(4-3) رمز المجموع",
+    "(4-4) مقاييس التشتت (المدى - التباين - الانحراف المعياري)"
+   ]
+  }
+ },
+ {
+  "grade": 11,
+  "g": "الحادي عشر",
+  "template": "psych",
+  "subject": "الرياضيات",
+  "units": {
+   "الفصل 1 (الأعداد والعمليات عليها)": [
+    "(1-1) الجذور والتعبيرات الجذرية",
+    "(1-2) الأسس النسبية",
+    "(1-3) حل المعادلات"
+   ],
+   "الفصل 2 (الدوال)": [
+    "(2-1) مجال الدالة",
+    "(2-2) الدوال التربيعية ونمذجتها",
+    "(2-3) الدوال التربيعية والقطوع المكافئة",
+    "(2-5) المعكوسات ودوال الجذر التربيعي",
+    "(2-6) حل المتباينات"
+   ],
+   "الفصل 3 (كثيرات الحدود)": [
+    "(3-1) دوال القوى ومعكوساتها",
+    "(3-2) الدوال الحدودية",
+    "(3-3) العوامل الخطية لكثيرات الحدود",
+    "(3-4) قسمة كثيرات الحدود",
+    "(3-5) حل معادلات كثيرات الحدود"
+   ],
+   "الفصل 4 (الدوال الأسية واللوغاريتمية)": [
+    "(4-1) استكشاف النماذج الأسية",
+    "(4-2) الدوال الأسية وتمثيلها بيانياً",
+    "(4-3) الدوال اللوغاريتمية وتمثيلها بيانياً",
+    "(4-4) خواص اللوغاريتمات",
+    "(4-5) المعادلات الأسية واللوغاريتمية",
+    "(4-6) اللوغاريتم الطبيعي"
+   ],
+   "الفصل 5 (المتجهات)": [
+    "(5-1) المتجه في المستوى",
+    "(5-2) جمع المتجهات وطرحها",
+    "(5-3) الضرب الداخلي"
+   ],
+   "الفصل 6 (تحليل البيانات والاحتمال)": [
+    "(6-1) المجتمع الإحصائي والمعاينة",
+    "(6-2) العينات",
+    "(6-3) أساليب عرض البيانات"
+   ]
+  }
+ },
+ {
+  "grade": 12,
+  "g": "الثاني عشر",
+  "template": "psych",
+  "subject": "الرياضيات",
+  "units": {
+   "الفصل 1 (النهايات والاتصال)": [
+    "(1-1) النهايات",
+    "(1-2) نهايات تشتمل على ∞ و -∞",
+    "(1-3) صيغ غير معينة",
+    "(1-4) نهايات بعض الدوال المثلثية",
+    "(1-5) الاتصال",
+    "(1-6) نظريات الاتصال",
+    "(1-7) الاتصال على فترة"
+   ],
+   "الفصل 2 (المشتقة)": [
+    "(2-1) معدلات التغير وخطوط المماس",
+    "(2-2) المشتقة",
+    "(2-3) قواعد الاشتقاق",
+    "(2-4) مشتقات الدوال المثلثية",
+    "(2-5) قاعدة السلسلة",
+    "(2-6) المشتقات ذات الرتب العليا والاشتقاق الضمني"
+   ],
+   "الفصل 3 (تطبيقات المشتقة)": [
+    "(3-1) القيم القصوى (العظمى/الصغرى) للدوال",
+    "(3-2) تزايد وتناقص الدوال",
+    "(3-3) ربط المشتقة الأولى والثانية بمنحنى الدالة",
+    "(3-4) رسم بيان دوال كثيرات الحدود",
+    "(3-5) تطبيقات على القيم القصوى"
+   ],
+   "الفصل 4 (تحليل البيانات)": [
+    "(4-1) التقدير",
+    "(4-2) اختبارات الفروض الإحصائية",
+    "(4-3) الارتباط والانحدار"
+   ]
+  }
  }
 ];
