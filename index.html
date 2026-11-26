@@ -1283,9 +1283,10 @@ function flattenLists(root){
       n++;
       li.style.listStyle = 'none';
       li.style.display = 'block';
+      li.style.paddingRight = '1.7em'; li.style.textIndent = '-1.7em';
       const mk = document.createElement('span');
       mk.setAttribute('dir','ltr');
-      mk.style.cssText = 'display:inline-block; unicode-bidi:isolate; min-width:1.5em; text-align:right; margin-left:2px';
+      mk.style.cssText = 'display:inline-block; unicode-bidi:isolate; width:1.7em; text-indent:0; text-align:right';
       mk.textContent = isOl ? (n + '.') : '\u2022';
       li.insertBefore(mk, li.firstChild);
     });
@@ -1298,13 +1299,15 @@ function flattenLists(root){
 }
 function buildWordHtml(){
   const clone = cleanedSheetClone();
-  clone.querySelectorAll('table').forEach(t=>{ t.setAttribute('border','1'); t.setAttribute('cellpadding','4'); t.setAttribute('cellspacing','0'); t.setAttribute('bordercolor','#333333'); });
+  clone.querySelectorAll('table').forEach(t=>{ t.setAttribute('width','100%'); t.setAttribute('dir','rtl'); t.setAttribute('border','1'); t.setAttribute('cellpadding','4'); t.setAttribute('cellspacing','0'); t.setAttribute('bordercolor','#333333'); });
   clone.querySelectorAll('th').forEach(th=>{ th.setAttribute('bgcolor','#dcefe4'); });
   clone.querySelectorAll('.head-cells th').forEach(th=>{ th.setAttribute('bgcolor','#1d6b4f'); });
   const body = clone.innerHTML;
   return '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40" dir="rtl"><head><meta charset="utf-8">'
   + '<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom><w:DoNotOptimizeForBrowser/></w:WordDocument></xml><![endif]-->'
   + '<style>'
+  + '@page WordSection1{size:841.9pt 595.3pt; mso-page-orientation:landscape; margin:28pt 28pt 28pt 28pt}'
+  + 'div.WordSection1{page:WordSection1}'
   + '@page{size:29.7cm 21cm; margin:1cm; mso-page-orientation:landscape}'
   + 'body{font-family:"Sakkal Majalla","Traditional Arabic",Arial,sans-serif; direction:rtl; font-size:11pt}'
   + 'table.ftable{width:100%; border-collapse:collapse; table-layout:fixed; margin-bottom:8px}'
@@ -1318,7 +1321,7 @@ function buildWordHtml(){
   + 'ol,ul{margin:0; padding-right:16px}'
   + 'li{margin-bottom:2px}'
   + 'p{margin:2px 0}'
-  + '</style></head><body>' + body + '</body></html>';
+  + '</style></head><body><div class="WordSection1">' + body + '</div></body></html>';
 }
 function downloadBlob(blob, name){
   const a = document.createElement('a');
