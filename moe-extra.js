@@ -31,50 +31,6 @@ window.MOE_EXTRA = [
   }
  },
  {
-  "grade": 1,
-  "g": "الأول",
-  "template": "social",
-  "subject": "اللغة الإنجليزية",
-  "units": {
-   "Unit One: All About Myself": [
-    "Reading & Vocabulary: Body Parts",
-    "Reading & Vocabulary: Numbers",
-    "Reading & Vocabulary: Colours",
-    "Grammar: Possessive adjectives (My/ Your)",
-    "Grammar: Present simple",
-    "Grammar: Nouns (singular/ plural)",
-    "Grammar: Indefinite articles (a/an)",
-    "Grammar: Personal pronoun(I)"
-   ],
-   "Unit Two: Meet My Family": [
-    "Reading & Vocabulary: Family members",
-    "Reading & Vocabulary: Numbers",
-    "Reading & Vocabulary: Colours",
-    "Grammar: Possessive adjectives (my, his, her)",
-    "Grammar: Present simple",
-    "Grammar: Yes / No questions"
-   ],
-   "Unit Three: My House": [
-    "Reading & Vocabulary: Household items",
-    "Reading & Vocabulary: Numbers",
-    "Reading & Vocabulary: Colours",
-    "Grammar: Present simple tense",
-    "Grammar: Prepositions of place (on, in, under)",
-    "Grammar: Wh-questions",
-    "Grammar: Demonstratives (singular) (this, that)"
-   ],
-   "Unit Four: My School": [
-    "Reading & Vocabulary: School Items",
-    "Reading & Vocabulary: Actions",
-    "Reading & Vocabulary: Colours",
-    "Reading & Vocabulary: Numbers",
-    "Grammar: Present continuous",
-    "Grammar: Modal verb can for a polite request",
-    "Grammar: Present simple"
-   ]
-  }
- },
- {
   "grade": 2,
   "g": "الثاني",
   "template": "social",
@@ -100,45 +56,6 @@ window.MOE_EXTRA = [
     "فقه الصلاة",
     "عمل الرسول محمد صلى الله عليه وسلم",
     "الرسول محمد صلى الله عليه وسلم في شبابه"
-   ]
-  }
- },
- {
-  "grade": 2,
-  "g": "الثاني",
-  "template": "social",
-  "subject": "اللغة الإنجليزية",
-  "units": {
-   "Unit One: My School Day": [
-    "Reading & Vocabulary: Daily routines",
-    "Reading & Vocabulary: Action verbs",
-    "Reading & Vocabulary: School rooms",
-    "Grammar: Singular and plural: is, are",
-    "Grammar: Demonstrative pronouns: These, Those"
-   ],
-   "Unit Two: My Home": [
-    "Reading & Vocabulary: Rooms",
-    "Reading & Vocabulary: Numbers",
-    "Reading & Vocabulary: Antonyms",
-    "Grammar: Present simple (Where is / are)",
-    "Grammar: Nouns (singular/ plural)",
-    "Grammar: Past tense",
-    "Grammar: Modal verb can ( yes/no)",
-    "Grammar: Prepositions of place (on, in, under)"
-   ],
-   "Unit Three: All About Animals": [
-    "Reading & Vocabulary: Animals",
-    "Reading & Vocabulary: Actions",
-    "Reading & Vocabulary: Places",
-    "Grammar: Present simple",
-    "Grammar: Present continuous"
-   ],
-   "Unit Four: I Like Sports": [
-    "Reading & Vocabulary: Sports",
-    "Reading & Vocabulary: Actions",
-    "Reading & Vocabulary: Places",
-    "Grammar: Like + Gerund",
-    "Grammar: Modal verb can for ability"
    ]
   }
  },
@@ -173,42 +90,6 @@ window.MOE_EXTRA = [
   }
  },
  {
-  "grade": 3,
-  "g": "الثالث",
-  "template": "social",
-  "subject": "اللغة الإنجليزية",
-  "units": {
-   "Unit One: All About Kuwait": [
-    "Reading & Vocabulary: Countries & nationalities",
-    "Reading & Vocabulary: Cultural & educational places",
-    "Reading & Vocabulary: Landmarks in Kuwait",
-    "Grammar: Present simple",
-    "Grammar: Future with will",
-    "Grammar: Sequence adverbs"
-   ],
-   "Unit Two: My Day": [
-    "Reading & Vocabulary: Time telling",
-    "Reading & Vocabulary: School and subjects",
-    "Reading & Vocabulary: Antonyms",
-    "Grammar: Present simple",
-    "Grammar: Adverbs of frequency",
-    "Grammar: Simple past tense"
-   ],
-   "Unit Three: My Healthy Lifestyle": [
-    "Reading & Vocabulary: Food items",
-    "Grammar: Imperatives",
-    "Grammar: Countable & uncountable nouns"
-   ],
-   "Unit Four: My Future Job": [
-    "Reading & Vocabulary: Jobs",
-    "Reading & Vocabulary: Activities",
-    "Grammar: Present simple",
-    "Grammar: Past simple",
-    "Grammar: Gerund (like + ing)"
-   ]
-  }
- },
- {
   "grade": 4,
   "g": "الرابع",
   "template": "social",
@@ -234,40 +115,6 @@ window.MOE_EXTRA = [
     "صلاة التراويح",
     "بيعة العقبة الثانية",
     "آداب الحوار"
-   ]
-  }
- },
- {
-  "grade": 4,
-  "g": "الرابع",
-  "template": "social",
-  "subject": "اللغة الإنجليزية",
-  "units": {
-   "Unit One: Health is Wealth": [
-    "Reading & Vocabulary: Healthy habits",
-    "Reading & Vocabulary: Sports",
-    "Grammar: Gerunds (like/enjoy + v (ing)",
-    "Grammar: Future with going to"
-   ],
-   "Unit Two: Celebrations and Religious Events": [
-    "Reading & Vocabulary: Celebrations and events",
-    "Grammar: Present simple",
-    "Grammar: Past simple using: ago",
-    "Grammar: Future tense with going to"
-   ],
-   "Unit Three: Discover the Animal Word": [
-    "Reading & Vocabulary: Animals",
-    "Reading & Vocabulary: Actions",
-    "Reading & Vocabulary: Descriptive adjectives",
-    "Grammar: Present simple",
-    "Grammar: Sequence Adverbs",
-    "Grammar: Comparative and superlative adjectives"
-   ],
-   "Unit Four: Exploring Kuwait and the World": [
-    "Reading & Vocabulary: Countries",
-    "Reading & Vocabulary: Kuwait",
-    "Grammar: Past continuous with when",
-    "Grammar: Past simple"
    ]
   }
  },
@@ -298,45 +145,6 @@ window.MOE_EXTRA = [
     "الإحرام",
     "غزوة أحد",
     "الصداقة"
-   ]
-  }
- },
- {
-  "grade": 5,
-  "g": "الخامس",
-  "template": "social",
-  "subject": "اللغة الإنجليزية",
-  "units": {
-   "Unit One: Treasures from Our Past": [
-    "Reading & Vocabulary: Heritage",
-    "Reading & Vocabulary: Kuwait in the past",
-    "Grammar: Present simple",
-    "Grammar: Past simple",
-    "Grammar: Present perfect"
-   ],
-   "Unit Two: From Our Heritage to Our Future": [
-    "Reading & Vocabulary: Shopping",
-    "Reading & Vocabulary: Places in Kuwait",
-    "Reading & Vocabulary: Names of Activities",
-    "Grammar: Anything/something",
-    "Grammar: Coordinating conjunctions: ‘and’ and ‘but’",
-    "Grammar: Prepositions of place",
-    "Grammar: Future tense with ‘going to’"
-   ],
-   "Unit Three: Exploring the Weather": [
-    "Reading & Vocabulary: Weather and climate",
-    "Reading & Vocabulary: Weather forecast",
-    "Grammar: Coordinating conjunctions: ‘so’ and ‘or’",
-    "Grammar: Modal verbs ‘should’ and ‘have to’ for giving advice",
-    "Grammar: Modal verb ‘might’ for expressing possibility"
-   ],
-   "Unit Four: Read to Explore": [
-    "Reading & Vocabulary: Books",
-    "Reading & Vocabulary: Reading",
-    "Grammar: Too and enough",
-    "Grammar: Past simple",
-    "Grammar: Sequence adverbs",
-    "Grammar: Modal verb: would/ wouldn’t"
    ]
   }
  },
@@ -473,6 +281,490 @@ window.MOE_EXTRA = [
     "فتح مكة",
     "الاقتداء بالصالحين",
     "آداب التعامل مع التقنية الحديثة والتواصل الاجتماعي"
+   ]
+  }
+ },
+ {
+  "grade": 1,
+  "g": "الأول",
+  "template": "social",
+  "subject": "اللغة الإنجليزية",
+  "units": {
+   "Unit One: All About Myself": [
+    "Reading & Vocabulary: Body Parts",
+    "Reading & Vocabulary: Numbers",
+    "Reading & Vocabulary: Colours",
+    "Grammar: Possessive adjectives (My/ Your)",
+    "Grammar: Present simple",
+    "Grammar: Nouns (singular/ plural)",
+    "Grammar: Indefinite articles (a/an)",
+    "Grammar: Personal pronoun(I)"
+   ],
+   "Unit Two: Meet My Family": [
+    "Reading & Vocabulary: Family members",
+    "Reading & Vocabulary: Numbers",
+    "Reading & Vocabulary: Colours",
+    "Grammar: Possessive adjectives (my, his, her)",
+    "Grammar: Present simple",
+    "Grammar: Yes / No questions"
+   ],
+   "Unit Three: My House": [
+    "Reading & Vocabulary: Household items",
+    "Reading & Vocabulary: Numbers",
+    "Reading & Vocabulary: Colours",
+    "Grammar: Present simple tense",
+    "Grammar: Prepositions of place (on, in, under)",
+    "Grammar: Wh-questions",
+    "Grammar: Demonstratives (singular) (this, that)"
+   ],
+   "Unit Four: My School": [
+    "Reading & Vocabulary: School Items",
+    "Reading & Vocabulary: Actions",
+    "Reading & Vocabulary: Colours",
+    "Reading & Vocabulary: Numbers",
+    "Grammar: Present continuous",
+    "Grammar: Modal verb can for a polite request",
+    "Grammar: Present simple"
+   ]
+  }
+ },
+ {
+  "grade": 2,
+  "g": "الثاني",
+  "template": "social",
+  "subject": "اللغة الإنجليزية",
+  "units": {
+   "Unit One: My School Day": [
+    "Reading & Vocabulary: Daily routines",
+    "Reading & Vocabulary: Action verbs",
+    "Reading & Vocabulary: School rooms",
+    "Grammar: Singular and plural: is, are",
+    "Grammar: Demonstrative pronouns: These, Those"
+   ],
+   "Unit Two: My Home": [
+    "Reading & Vocabulary: Rooms",
+    "Reading & Vocabulary: Numbers",
+    "Reading & Vocabulary: Antonyms",
+    "Grammar: Present simple (Where is / are)",
+    "Grammar: Nouns (singular/ plural)",
+    "Grammar: Past tense",
+    "Grammar: Modal verb can ( yes/no)",
+    "Grammar: Prepositions of place (on, in, under)"
+   ],
+   "Unit Three: All About Animals": [
+    "Reading & Vocabulary: Animals",
+    "Reading & Vocabulary: Actions",
+    "Reading & Vocabulary: Places",
+    "Grammar: Present simple",
+    "Grammar: Present continuous"
+   ],
+   "Unit Four: I Like Sports": [
+    "Reading & Vocabulary: Sports",
+    "Reading & Vocabulary: Actions",
+    "Reading & Vocabulary: Places",
+    "Grammar: Like + Gerund",
+    "Grammar: Modal verb can for ability"
+   ]
+  }
+ },
+ {
+  "grade": 3,
+  "g": "الثالث",
+  "template": "social",
+  "subject": "اللغة الإنجليزية",
+  "units": {
+   "Unit One: All About Kuwait": [
+    "Reading & Vocabulary: Countries & nationalities",
+    "Reading & Vocabulary: Cultural & educational places",
+    "Reading & Vocabulary: Landmarks in Kuwait",
+    "Grammar: Present simple",
+    "Grammar: Future with will",
+    "Grammar: Sequence adverbs"
+   ],
+   "Unit Two: My Day": [
+    "Reading & Vocabulary: Time telling",
+    "Reading & Vocabulary: School and subjects",
+    "Reading & Vocabulary: Antonyms",
+    "Grammar: Present simple",
+    "Grammar: Adverbs of frequency",
+    "Grammar: Simple past tense"
+   ],
+   "Unit Three: My Healthy Lifestyle": [
+    "Reading & Vocabulary: Food items",
+    "Grammar: Imperatives",
+    "Grammar: Countable & uncountable nouns"
+   ],
+   "Unit Four: My Future Job": [
+    "Reading & Vocabulary: Jobs",
+    "Reading & Vocabulary: Activities",
+    "Grammar: Present simple",
+    "Grammar: Past simple",
+    "Grammar: Gerund (like + ing)"
+   ]
+  }
+ },
+ {
+  "grade": 4,
+  "g": "الرابع",
+  "template": "social",
+  "subject": "اللغة الإنجليزية",
+  "units": {
+   "Unit One: Health is Wealth": [
+    "Reading & Vocabulary: Healthy habits",
+    "Reading & Vocabulary: Sports",
+    "Grammar: Gerunds (like/enjoy + v (ing)",
+    "Grammar: Future with going to"
+   ],
+   "Unit Two: Celebrations and Religious Events": [
+    "Reading & Vocabulary: Celebrations and events",
+    "Grammar: Present simple",
+    "Grammar: Past simple using: ago",
+    "Grammar: Future tense with going to"
+   ],
+   "Unit Three: Discover the Animal Word": [
+    "Reading & Vocabulary: Animals",
+    "Reading & Vocabulary: Actions",
+    "Reading & Vocabulary: Descriptive adjectives",
+    "Grammar: Present simple",
+    "Grammar: Sequence Adverbs",
+    "Grammar: Comparative and superlative adjectives"
+   ],
+   "Unit Four: Exploring Kuwait and the World": [
+    "Reading & Vocabulary: Countries",
+    "Reading & Vocabulary: Kuwait",
+    "Grammar: Past continuous with when",
+    "Grammar: Past simple"
+   ]
+  }
+ },
+ {
+  "grade": 5,
+  "g": "الخامس",
+  "template": "social",
+  "subject": "اللغة الإنجليزية",
+  "units": {
+   "Unit One: Treasures from Our Past": [
+    "Reading & Vocabulary: Heritage",
+    "Reading & Vocabulary: Kuwait in the past",
+    "Grammar: Present simple",
+    "Grammar: Past simple",
+    "Grammar: Present perfect"
+   ],
+   "Unit Two: From Our Heritage to Our Future": [
+    "Reading & Vocabulary: Shopping",
+    "Reading & Vocabulary: Places in Kuwait",
+    "Reading & Vocabulary: Names of Activities",
+    "Grammar: Anything/something",
+    "Grammar: Coordinating conjunctions: ‘and’ and ‘but’",
+    "Grammar: Prepositions of place",
+    "Grammar: Future tense with ‘going to’"
+   ],
+   "Unit Three: Exploring the Weather": [
+    "Reading & Vocabulary: Weather and climate",
+    "Reading & Vocabulary: Weather forecast",
+    "Grammar: Coordinating conjunctions: ‘so’ and ‘or’",
+    "Grammar: Modal verbs ‘should’ and ‘have to’ for giving advice",
+    "Grammar: Modal verb ‘might’ for expressing possibility"
+   ],
+   "Unit Four: Read to Explore": [
+    "Reading & Vocabulary: Books",
+    "Reading & Vocabulary: Reading",
+    "Grammar: Too and enough",
+    "Grammar: Past simple",
+    "Grammar: Sequence adverbs",
+    "Grammar: Modal verb: would/ wouldn’t"
+   ]
+  }
+ },
+ {
+  "grade": 1,
+  "g": "الأول",
+  "template": "social",
+  "subject": "العلوم",
+  "units": {
+   "علوم الحياة: النباتات": [
+    "ما الكائنات الحية والأشياء غير الحية ؟",
+    "ماذا تحتاج الكائنات الحية لتعيش ؟",
+    "ما أجزاء النبات ؟",
+    "أي أجزاء النبات نأكل ؟"
+   ],
+   "علوم الحياة: الحيوانات": [
+    "كيف تنتقل الحيوانات ؟",
+    "ماذا يغطي جسم الحيوانات ؟",
+    "ماذا تأكل الحيوانات ؟",
+    "كيف تتنفس الحيوانات ؟",
+    "كيف تتكاثر الحيوانات ؟"
+   ],
+   "علوم الحياة: المواطن الطبيعية": [
+    "أين تعيش الكائنات الحية ؟",
+    "كيف نحمي أماكن عيش الكائنات الحية ؟"
+   ],
+   "جسم الإنسان: الحواس الخمس": [
+    "ما أجزاء جسم الإنسان ؟",
+    "كيف نرى الأشياء ؟",
+    "كيف نسمع الأصوات ؟",
+    "كيف تساعدنا حاسة الشم ؟",
+    "كيف نكتشف الأشياء بحاسة اللمس ؟",
+    "كيف نعرف طعم الأشياء ؟",
+    "ماذا نأكل ؟",
+    "ما الأطعمة الصالحة للأكل ؟"
+   ]
+  }
+ },
+ {
+  "grade": 2,
+  "g": "الثاني",
+  "template": "social",
+  "subject": "العلوم",
+  "units": {
+   "علوم الحياة: النباتات": [
+    "ما وظيفة الجذور ؟",
+    "ما وظيفة الساق ؟",
+    "ما وظيفة الأوراق ؟",
+    "ما وظيفة الأزهار ؟",
+    "كيف تنتشر البذور ؟",
+    "ما مراحل نمو النبات ؟"
+   ],
+   "علوم الحياة: الحيوانات": [
+    "كيف نصنف الحيوانات ؟",
+    "كيف نصنف الحيوانات الفقارية ؟"
+   ],
+   "علوم الحياة: الكائنات الحية في المواطن الطبيعية": [
+    "ما الموطن الطبيعي ؟",
+    "ما أنواع المواطن الطبيعية ؟"
+   ],
+   "جسم الإنسان: صحة جسم الإنسان": [
+    "ما وظيفة الأسنان ؟",
+    "ما أهمية هرم الدليل الغذائي ؟",
+    "كيف نحافظ على صحة وسلامة أجسامنا ؟"
+   ]
+  }
+ },
+ {
+  "grade": 3,
+  "g": "الثالث",
+  "template": "social",
+  "subject": "العلوم",
+  "units": {
+   "علوم الحياة: النباتات": [
+    "ما أجزاء الزهرة ؟",
+    "ما التلقيح ؟",
+    "ما الإخصاب ؟"
+   ],
+   "علوم الحياة: الحيوانات": [
+    "ما خصائص الحيوانات الفقارية ؟",
+    "ما مراحل دورة حياة الحشرات ؟"
+   ],
+   "علوم الحياة: الأنظمة البيئية": [
+    "ما التكيف ؟",
+    "كيف تتكيف الكائنات الحية في مواطنها الطبيعية ؟",
+    "كيف تنتقل الطاقة بين الكائنات الحية ؟"
+   ],
+   "الإنسان: أجهزة جسم الإنسان": [
+    "ما أجهزة جسم الإنسان ؟",
+    "كيف نحمي أنفسنا من الأمراض ؟"
+   ]
+  }
+ },
+ {
+  "grade": 4,
+  "g": "الرابع",
+  "template": "social",
+  "subject": "العلوم",
+  "units": {
+   "علوم الحياة: الكائنات الحية": [
+    "ما حاجات الكائنات الحية ؟",
+    "كيف يصنع النبات غذاءه ؟",
+    "ما مظاهر الحياة التي تبديها الكائنات الحية ؟",
+    "كيف تستجيب الكائنات الحية لعوامل البيئة المختلفة ؟"
+   ],
+   "علوم الحياة: الحيوانات": [
+    "كيف يصنف العلماء الحيوانات اللافقارية ؟",
+    "ما خصائص الحيوانات اللافقارية ؟",
+    "كيف يصنف العلماء الحيوانات الفقارية ؟",
+    "ما خصائص الحيوانات الفقارية ؟"
+   ],
+   "علوم الحياة: الأنظمة البيئية تتغير": [
+    "ما النظام البيئي ؟",
+    "كيف تتغير الأنظمة البيئية ؟",
+    "ما الكائنات الحية المنقرضة والمعرضة لخطر الانقراض ؟",
+    "كيف نضمن استدامة الأنظمة البيئية ؟"
+   ],
+   "جسم الإنسان: تركيب جسم الإنسان": [
+    "ما وحدة بناء جسم الكائن الحي ؟",
+    "ما علاقة الخلية بالوراثة ؟",
+    "ما وظيفة الجهاز الهضمي ؟",
+    "ما وظيفة الجهاز التنفسي ؟",
+    "ما وظيفة الجهاز الدوري ؟",
+    "كيف يستجيب جسم الإنسان للعوامل المختلفة ؟"
+   ]
+  }
+ },
+ {
+  "grade": 5,
+  "g": "الخامس",
+  "template": "social",
+  "subject": "العلوم",
+  "units": {
+   "علوم الحياة: رحلة في أعماق الحياة": [
+    "الفيروسات",
+    "الممالك الخمس للكائنات الحية"
+   ],
+   "علوم الحياة: رحلة في مملكة النباتات": [
+    "المملكة النباتية",
+    "النباتات مغطاة البذور",
+    "عملية البناء الضوئي",
+    "عملية التنفس الخلوي"
+   ],
+   "علوم الحياة: رحلة إلى قلب الطبيعة": [
+    "التكيف البنيوي",
+    "التكيف السلوكي",
+    "العلاقات بين الكائنات الحية في النظام البيئي",
+    "انتقال الطاقة في النظام البيئي",
+    "أهمية التوازن البيئي على حياة الكائنات الحية"
+   ],
+   "جسم الإنسان: رحلة إلى عجائب جسم الإنسان": [
+    "الجهاز الإخراجي والتخلص من الفضلات",
+    "الجهاز الحركي تناغم الهيكل والعضلة",
+    "الجهاز العصبي مركز القيادة"
+   ]
+  }
+ },
+ {
+  "grade": 6,
+  "g": "السادس",
+  "template": "social",
+  "subject": "العلوم",
+  "units": {
+   "الوحدة الأولى: المادة والطاقة (العلوم الفيزيائية)": [
+    "القياس",
+    "أدوات القياس",
+    "الحركة",
+    "القوى والحركة",
+    "القانون الأول للحركة",
+    "القانون الثاني للحركة",
+    "القانون الثالث للحركة"
+   ],
+   "الوحدة الثانية: الأرض والفضاء": [
+    "الغلاف الجوي",
+    "ضغط الجوي"
+   ],
+   "الوحدة الثالثة: علوم الحياة": [
+    "المجهر",
+    "تركيب الخلايا في الكائنات الحية",
+    "مستويات التعضي في الكائنات الحية",
+    "التكاثر في الكائنات الحية",
+    "أنواع التكاثر في الكائنات الحية"
+   ],
+   "الوحدة الرابعة: المادة والطاقة (العلوم الكيميائية)": [
+    "المادة وخواصها",
+    "حالات المادة",
+    "التغيرات الفيزيائية والكيميائية للمادة",
+    "العوامل المؤثرة على حجم الغاز"
+   ]
+  }
+ },
+ {
+  "grade": 7,
+  "g": "السابع",
+  "template": "social",
+  "subject": "العلوم",
+  "units": {
+   "الوحدة الأولى: علوم الحياة": [
+    "التصنيف",
+    "الممالك الخمس",
+    "الفيروسات",
+    "مملكة البدائيات",
+    "مملكة الطلائعيات",
+    "مملكة الفطريات"
+   ],
+   "الوحدة الثانية: الأرض والفضاء": [
+    "تركيب الأرض",
+    "أنواع الصخور"
+   ],
+   "الوحدة الثالثة: المادة والطاقة (العلوم الفيزيائية)": [
+    "الضغط",
+    "ضغط عند نقطة في باطن سائل",
+    "سلوك الأجسام داخل السائل",
+    "قاعدة أرخميدس",
+    "العوامل التي تتوقف عليها قوة دفع السائل",
+    "تطبيقات على الطفو"
+   ],
+   "الوحدة الرابعة: المادة والطاقة (العلوم الكيميائية)": [
+    "الذرة",
+    "العدد الذري والعدد الكتلي",
+    "الجدول الدوري",
+    "التوزيع الإلكتروني للذرات"
+   ]
+  }
+ },
+ {
+  "grade": 8,
+  "g": "الثامن",
+  "template": "social",
+  "subject": "العلوم",
+  "units": {
+   "الوحدة الأولى: علوم الحياة": [
+    "المغذيات",
+    "النظام الغذائي المتوازن",
+    "تركيب الجهاز الهضمي",
+    "ملحقات الجهاز الهضمي",
+    "عملية الهضم",
+    "التنفس في الإنسان",
+    "الحصول على الطاقة",
+    "صحة الجهاز التنفسي"
+   ],
+   "الوحدة الثانية: الأرض والفضاء": [
+    "العمليات الطبيعية التي تغير شكل سطح الأرض",
+    "المظاهر الجيولوجية"
+   ],
+   "الوحدة الثالثة: المادة والطاقة (العلوم الفيزيائية)": [
+    "طبيعة الموجات وأنواعها",
+    "خصائص الموجات",
+    "الصوت والسمع",
+    "خصائص الصوت",
+    "الطيف الكهرومغناطيسي"
+   ],
+   "الوحدة الرابعة: المادة والطاقة (العلوم الكيميائية)": [
+    "الغازات النبيلة",
+    "الفلزات واللافلزات",
+    "الرابطة الأيونية",
+    "الرابطة التساهمية"
+   ]
+  }
+ },
+ {
+  "grade": 9,
+  "g": "التاسع",
+  "template": "social",
+  "subject": "العلوم",
+  "units": {
+   "الوحدة الأولى: علوم الحياة": [
+    "مراحل حياة الإنسان",
+    "الانقسام الخلوي",
+    "أجهزة التكاثر في الإنسان",
+    "الإخصاب والحمل والولادة",
+    "صحة الأجهزة التناسلية"
+   ],
+   "الوحدة الثانية: المادة والطاقة (العلوم الكيميائية)": [
+    "التكافؤ",
+    "الشقوق الأيونية",
+    "الصيغة الكيميائية ومدلولها",
+    "الصيغة الكيميائية للمركب الأيوني"
+   ],
+   "الوحدة الثالثة: المادة والطاقة (العلوم الفيزيائية)": [
+    "المرايا الكروية",
+    "مسار الأشعة المنعكسة عن سطح المرايا الكروية",
+    "صفات الصور المتكونة في المرايا المقعرة",
+    "العدسات",
+    "مسار الأشعة المنكسرة خلال العدسات المقعرة والمحدبة",
+    "صفات الصور المتكونة في العدسة المحدبة",
+    "الضوء والإبصار",
+    "عيوب الإبصار"
+   ],
+   "الوحدة الرابعة: الأرض والفضاء": [
+    "الظواهر الكونية",
+    "المجرات ودورة حياة النجم"
    ]
   }
  }
