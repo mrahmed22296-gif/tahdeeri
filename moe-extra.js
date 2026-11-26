@@ -31,6 +31,50 @@ window.MOE_EXTRA = [
   }
  },
  {
+  "grade": 1,
+  "g": "الأول",
+  "template": "social",
+  "subject": "اللغة الإنجليزية",
+  "units": {
+   "Unit One: All About Myself": [
+    "Reading & Vocabulary: Body Parts",
+    "Reading & Vocabulary: Numbers",
+    "Reading & Vocabulary: Colours",
+    "Grammar: Possessive adjectives (My/ Your)",
+    "Grammar: Present simple",
+    "Grammar: Nouns (singular/ plural)",
+    "Grammar: Indefinite articles (a/an)",
+    "Grammar: Personal pronoun(I)"
+   ],
+   "Unit Two: Meet My Family": [
+    "Reading & Vocabulary: Family members",
+    "Reading & Vocabulary: Numbers",
+    "Reading & Vocabulary: Colours",
+    "Grammar: Possessive adjectives (my, his, her)",
+    "Grammar: Present simple",
+    "Grammar: Yes / No questions"
+   ],
+   "Unit Three: My House": [
+    "Reading & Vocabulary: Household items",
+    "Reading & Vocabulary: Numbers",
+    "Reading & Vocabulary: Colours",
+    "Grammar: Present simple tense",
+    "Grammar: Prepositions of place (on, in, under)",
+    "Grammar: Wh-questions",
+    "Grammar: Demonstratives (singular) (this, that)"
+   ],
+   "Unit Four: My School": [
+    "Reading & Vocabulary: School Items",
+    "Reading & Vocabulary: Actions",
+    "Reading & Vocabulary: Colours",
+    "Reading & Vocabulary: Numbers",
+    "Grammar: Present continuous",
+    "Grammar: Modal verb can for a polite request",
+    "Grammar: Present simple"
+   ]
+  }
+ },
+ {
   "grade": 2,
   "g": "الثاني",
   "template": "social",
@@ -56,6 +100,45 @@ window.MOE_EXTRA = [
     "فقه الصلاة",
     "عمل الرسول محمد صلى الله عليه وسلم",
     "الرسول محمد صلى الله عليه وسلم في شبابه"
+   ]
+  }
+ },
+ {
+  "grade": 2,
+  "g": "الثاني",
+  "template": "social",
+  "subject": "اللغة الإنجليزية",
+  "units": {
+   "Unit One: My School Day": [
+    "Reading & Vocabulary: Daily routines",
+    "Reading & Vocabulary: Action verbs",
+    "Reading & Vocabulary: School rooms",
+    "Grammar: Singular and plural: is, are",
+    "Grammar: Demonstrative pronouns: These, Those"
+   ],
+   "Unit Two: My Home": [
+    "Reading & Vocabulary: Rooms",
+    "Reading & Vocabulary: Numbers",
+    "Reading & Vocabulary: Antonyms",
+    "Grammar: Present simple (Where is / are)",
+    "Grammar: Nouns (singular/ plural)",
+    "Grammar: Past tense",
+    "Grammar: Modal verb can ( yes/no)",
+    "Grammar: Prepositions of place (on, in, under)"
+   ],
+   "Unit Three: All About Animals": [
+    "Reading & Vocabulary: Animals",
+    "Reading & Vocabulary: Actions",
+    "Reading & Vocabulary: Places",
+    "Grammar: Present simple",
+    "Grammar: Present continuous"
+   ],
+   "Unit Four: I Like Sports": [
+    "Reading & Vocabulary: Sports",
+    "Reading & Vocabulary: Actions",
+    "Reading & Vocabulary: Places",
+    "Grammar: Like + Gerund",
+    "Grammar: Modal verb can for ability"
    ]
   }
  },
@@ -90,6 +173,42 @@ window.MOE_EXTRA = [
   }
  },
  {
+  "grade": 3,
+  "g": "الثالث",
+  "template": "social",
+  "subject": "اللغة الإنجليزية",
+  "units": {
+   "Unit One: All About Kuwait": [
+    "Reading & Vocabulary: Countries & nationalities",
+    "Reading & Vocabulary: Cultural & educational places",
+    "Reading & Vocabulary: Landmarks in Kuwait",
+    "Grammar: Present simple",
+    "Grammar: Future with will",
+    "Grammar: Sequence adverbs"
+   ],
+   "Unit Two: My Day": [
+    "Reading & Vocabulary: Time telling",
+    "Reading & Vocabulary: School and subjects",
+    "Reading & Vocabulary: Antonyms",
+    "Grammar: Present simple",
+    "Grammar: Adverbs of frequency",
+    "Grammar: Simple past tense"
+   ],
+   "Unit Three: My Healthy Lifestyle": [
+    "Reading & Vocabulary: Food items",
+    "Grammar: Imperatives",
+    "Grammar: Countable & uncountable nouns"
+   ],
+   "Unit Four: My Future Job": [
+    "Reading & Vocabulary: Jobs",
+    "Reading & Vocabulary: Activities",
+    "Grammar: Present simple",
+    "Grammar: Past simple",
+    "Grammar: Gerund (like + ing)"
+   ]
+  }
+ },
+ {
   "grade": 4,
   "g": "الرابع",
   "template": "social",
@@ -115,6 +234,40 @@ window.MOE_EXTRA = [
     "صلاة التراويح",
     "بيعة العقبة الثانية",
     "آداب الحوار"
+   ]
+  }
+ },
+ {
+  "grade": 4,
+  "g": "الرابع",
+  "template": "social",
+  "subject": "اللغة الإنجليزية",
+  "units": {
+   "Unit One: Health is Wealth": [
+    "Reading & Vocabulary: Healthy habits",
+    "Reading & Vocabulary: Sports",
+    "Grammar: Gerunds (like/enjoy + v (ing)",
+    "Grammar: Future with going to"
+   ],
+   "Unit Two: Celebrations and Religious Events": [
+    "Reading & Vocabulary: Celebrations and events",
+    "Grammar: Present simple",
+    "Grammar: Past simple using: ago",
+    "Grammar: Future tense with going to"
+   ],
+   "Unit Three: Discover the Animal Word": [
+    "Reading & Vocabulary: Animals",
+    "Reading & Vocabulary: Actions",
+    "Reading & Vocabulary: Descriptive adjectives",
+    "Grammar: Present simple",
+    "Grammar: Sequence Adverbs",
+    "Grammar: Comparative and superlative adjectives"
+   ],
+   "Unit Four: Exploring Kuwait and the World": [
+    "Reading & Vocabulary: Countries",
+    "Reading & Vocabulary: Kuwait",
+    "Grammar: Past continuous with when",
+    "Grammar: Past simple"
    ]
   }
  },
@@ -145,6 +298,45 @@ window.MOE_EXTRA = [
     "الإحرام",
     "غزوة أحد",
     "الصداقة"
+   ]
+  }
+ },
+ {
+  "grade": 5,
+  "g": "الخامس",
+  "template": "social",
+  "subject": "اللغة الإنجليزية",
+  "units": {
+   "Unit One: Treasures from Our Past": [
+    "Reading & Vocabulary: Heritage",
+    "Reading & Vocabulary: Kuwait in the past",
+    "Grammar: Present simple",
+    "Grammar: Past simple",
+    "Grammar: Present perfect"
+   ],
+   "Unit Two: From Our Heritage to Our Future": [
+    "Reading & Vocabulary: Shopping",
+    "Reading & Vocabulary: Places in Kuwait",
+    "Reading & Vocabulary: Names of Activities",
+    "Grammar: Anything/something",
+    "Grammar: Coordinating conjunctions: ‘and’ and ‘but’",
+    "Grammar: Prepositions of place",
+    "Grammar: Future tense with ‘going to’"
+   ],
+   "Unit Three: Exploring the Weather": [
+    "Reading & Vocabulary: Weather and climate",
+    "Reading & Vocabulary: Weather forecast",
+    "Grammar: Coordinating conjunctions: ‘so’ and ‘or’",
+    "Grammar: Modal verbs ‘should’ and ‘have to’ for giving advice",
+    "Grammar: Modal verb ‘might’ for expressing possibility"
+   ],
+   "Unit Four: Read to Explore": [
+    "Reading & Vocabulary: Books",
+    "Reading & Vocabulary: Reading",
+    "Grammar: Too and enough",
+    "Grammar: Past simple",
+    "Grammar: Sequence adverbs",
+    "Grammar: Modal verb: would/ wouldn’t"
    ]
   }
  },
