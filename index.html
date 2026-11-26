@@ -1074,7 +1074,8 @@ document.getElementById('actBtn').onclick = async () => {
   renderSaves();
 })();
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
 /* ================= تحميل Word / PDF ================= */
 function currentTitle(){
@@ -1126,16 +1127,30 @@ async function buildPdfBlob(){
   const stage = document.createElement('div');
   stage.style.cssText = 'position:fixed; left:0; top:0; width:1120px; background:#fff; padding:6px; direction:rtl; z-index:99999';
   stage.appendChild(cleanedSheetClone());
+  stage.querySelectorAll('.ftable td,.ftable th').forEach(c=>{ c.style.fontSize='9.5pt'; c.style.lineHeight='1.45'; c.style.padding='2px 4px'; });
   document.body.appendChild(stage);
   try{
-    const opt = {
-      margin:[6,6,6,6],
-      image:{type:'jpeg', quality:0.95},
-      html2canvas:{scale:1.6, useCORS:true, backgroundColor:'#ffffff'},
-      jsPDF:{unit:'mm', format:'a4', orientation:'landscape'},
-      pagebreak:{mode:['css','legacy']}
-    };
-    return await html2pdf().set(opt).from(stage).outputPdf('blob');
+    const canvas = await html2canvas(stage, {scale:1.6, backgroundColor:'#ffffff'});
+    const pdf = new window.jspdf.jsPDF({unit:'mm', format:'a4', orientation:'landscape'});
+    const pageW = 297, pageH = 210, margin = 6;
+    const imgW = pageW - margin*2;
+    const pxPerMm = canvas.width / imgW;
+    const pagePxH = Math.floor((pageH - margin*2) * pxPerMm);
+    let y = 0, page = 0;
+    while (y < canvas.height){
+      const slice = document.createElement('canvas');
+      slice.width = canvas.width;
+      slice.height = Math.min(pagePxH, canvas.height - y);
+      const ctx = slice.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, slice.width, slice.height);
+      ctx.drawImage(canvas, 0, y, canvas.width, slice.height, 0, 0, canvas.width, slice.height);
+      const img = slice.toDataURL('image/jpeg', 0.92);
+      if (page > 0) pdf.addPage();
+      pdf.addImage(img, 'JPEG', margin, margin, imgW, slice.height / pxPerMm);
+      y += pagePxH; page++;
+    }
+    return pdf.output('blob');
   } finally { stage.remove(); }
 }
 document.getElementById('pdfBtn').onclick = async () => {
