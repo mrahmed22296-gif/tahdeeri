@@ -218,6 +218,9 @@
         <button class="btn btn-ghost" id="blankLesson" type="button" style="margin-top:6px">فتح نموذج فارغ بهذا العنوان</button>
       </div>
       <div style="margin-top:10px">
+        <details style="margin-bottom:8px"><summary style="cursor:pointer;font-weight:700">📖 اختياري: الصق نص الدرس من الكتاب المدرسي (ليلتزم التحضير بالكتاب)</summary>
+          <textarea id="srcText" rows="6" maxlength="9000" placeholder="الصق هنا نص الدرس من الكتاب المدرسي. سيكتب الذكاء الاصطناعي المفاهيم والحقائق من هذا النص فقط." style="width:100%;margin-top:6px;padding:8px;border:1px solid #ccc;border-radius:8px;font:inherit"></textarea>
+        </details>
         <button class="btn" id="aiBtn" type="button" style="width:100%">✨ ولّد التحضير بالذكاء الاصطناعي</button>
         <p class="empty-note" id="aiMsg" style="margin-top:6px">التوليد بالذكاء الاصطناعي متاح للمشتركين — والمكتبة والنموذج الفارغ متاحان دائمًا.</p>
       </div>
@@ -985,7 +988,8 @@ document.getElementById('aiBtn').onclick = async () => {
       body: JSON.stringify({
         site: SITE_ID, code, title,
         template: state.template,
-        grade: document.getElementById('fClass').value.trim()
+        grade: document.getElementById('fClass').value.trim(),
+        source: (document.getElementById('srcText')||{value:''}).value.trim()
       })
     });
     const data = await r.json();
