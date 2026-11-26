@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>لوحة إدارة تحضيري</title>
+<style>body{font-family:Tahoma,Arial,sans-serif;background:#f1f5f3;margin:0;color:#1c2b24}header{background:#1d6b4f;color:#fff;padding:14px 18px;display:flex;justify-content:space-between;align-items:center}main{max-width:1000px;margin:16px auto;padding:0 12px}.card{background:#fff;border-radius:12px;padding:14px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.stat{background:#eaf5ef;border-radius:10px;padding:12px;text-align:center}.stat b{display:block;font-size:1.6rem;color:#1d6b4f}input{padding:8px;border:1px solid #ccc;border-radius:8px;font-family:inherit;margin:3px}button{padding:7px 12px;border:0;border-radius:8px;background:#1d6b4f;color:#fff;cursor:pointer;font-family:inherit;margin:2px}button.g{background:#e3e8e5;color:#222}button.r{background:#c0392b}table{width:100%;border-collapse:collapse;font-size:.9rem}td,th{border-bottom:1px solid #e3e3e3;padding:6px;text-align:right}.scroll{overflow-x:auto}</style></head>
+<body><header><b>🛠 لوحة إدارة تحضيري</b><a href="/" style="color:#fff">الموقع</a></header><main id="m"></main>
+<script>
+const $=id=>document.getElementById(id);const E=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const TK='tahdeeri_token';
+async function api(p,b){const o={method:b===undefined?'GET':'POST',headers:{Authorization:'Bearer '+(localStorage.getItem(TK)||'')}};if(b!==undefined){o.headers['Content-Type']='application/json';o.body=JSON.stringify(b);}try{const r=await fetch(p,o);return await r.json();}catch(e){return{ok:false}}}
+function login(msg){$('m').innerHTML='<div class="card" style="max-width:380px;margin:40px auto"><h3>دخول الإدارة</h3><input id="e" type="email" placeholder="البريد" style="width:90%"><input id="p" type="password" placeholder="كلمة المرور" style="width:90%"><div style="color:#c0392b;min-height:20px">'+(msg||'')+'</div><button id="go">دخول</button></div>';
+$('go').onclick=async()=>{const r=await fetch('/api/auth?a=login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:$('e').value.trim(),password:$('p').value})}).then(x=>x.json()).catch(()=>({}));if(!r.ok)return login('بيانات غير صحيحة');localStorage.setItem(TK,r.token);load();};}
+const tl=(a)=>(a&&a.length)?a.map(x=>E(x[0])+' ('+x[1]+')').join('، '):'لا توجد بيانات بعد';
+async function load(){
+ const s=await api('/api/admin?a=stats');
+ if(!s.ok){ return login(s.error==='admin'?'هذا الحساب ليس حساب إدارة':''); }
+ const u=await api('/api/admin?a=users');
+ $('m').innerHTML='<div class="card"><div class="grid">'+[['المستخدمون',s.users],['نشطون (7 أيام)',s.active7],['التحضيرات المحفوظة',s.preps],['عمليات التوليد',s.gens],['توليد ناجح',s.gensOk],['توليد فاشل',s.genFail],['اشتراكات نشطة',s.subs],['التنزيلات',s.dls]].map(x=>'<div class="stat"><b>'+x[1]+'</b>'+x[0]+'</div>').join('')+'</div><p>أكثر المواد: '+tl(s.topSubjects)+'<br>أكثر الصفوف: '+tl(s.topGrades)+'</p><p>الإيرادات الشهرية: غير متاحة هنا (الدفع يدوي عبر وامض ويُراجع خارج الموقع)</p></div>'+
+ '<div class="card"><b>حد التوليد اليومي لكل مستخدم:</b> <input id="lim" type="number" value="'+s.limit+'" style="width:80px"><button id="setlim">حفظ</button></div>'+
+ '<div class="card"><b>آخر أخطاء التوليد</b><div>'+((s.errs||[]).map(x=>'<div>'+E(String(x.created_at).slice(0,16).replace("T"," "))+' - '+E(x.error)+' - '+E(x.title)+'</div>').join('')||'لا أخطاء')+'</div></div>'+
+ '<div class="card scroll"><b>المستخدمون</b><table><tr><th>الاسم</th><th>البريد</th><th>الهاتف</th><th>آخر دخول</th><th>الاشتراك</th><th>إجراء</th></tr>'+((u.users||[]).map(x=>'<tr><td>'+E(x.name)+'</td><td>'+E(x.email)+'</td><td>'+E(x.phone)+'</td><td>'+E(String(x.last_login||'').slice(0,10))+'</td><td>'+(x.sub_ends?E(x.sub_ends.slice(0,10)):'-')+'</td><td><button data-g="'+x.id+'">+30 يوم</button><button class="g" data-r="'+x.id+'">إلغاء الاشتراك</button><button class="'+(x.status==='active'?'r':'g')+'" data-s="'+x.id+'" data-v="'+x.status+'">'+(x.status==='active'?'إيقاف':'تفعيل الحساب')+'</button></td></tr>').join(''))+'</table></div>';
+ $('setlim').onclick=async()=>{await api('/api/admin?a=setlimit',{limit:$('lim').value});load();};
+ document.querySelectorAll('[data-g]').forEach(b=>b.onclick=async()=>{await api('/api/admin?a=grant',{id:b.dataset.g,days:30});load();});
+ document.querySelectorAll('[data-r]').forEach(b=>b.onclick=async()=>{if(confirm('إلغاء اشتراك هذا المستخدم؟')){await api('/api/admin?a=revoke',{id:b.dataset.r});load();}});
+ document.querySelectorAll('[data-s]').forEach(b=>b.onclick=async()=>{await api('/api/admin?a=status',{id:b.dataset.s,status:b.dataset.v==='active'?'disabled':'active'});load();});
+}
+load();
+</script></body></html>
