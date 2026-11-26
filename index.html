@@ -212,6 +212,8 @@
   <p>اكتب عنوان الدرس، واحصل على تحضير كامل بنموذج وزارة التربية الكويتية جاهز للتعديل والطباعة</p>
   <span class="honesty">المحتوى صياغة أصلية مقترحة وليس نصًا من كتاب الوزارة — راجعه قبل اعتماده</span>
 </header>
+<div id="tdSubBar" style="display:none;background:#fff4d6;border-bottom:1px solid #e0b84c;padding:10px 14px;text-align:center;font-size:.95rem"></div>
+<div id="tdStats" style="display:none;max-width:900px;margin:12px auto 0;padding:0 12px"></div>
 
 <main class="layout">
   <!-- ============ Controls ============ -->
@@ -1662,6 +1664,32 @@ document.getElementById('pdfBtn').onclick = async () => {
   db.addEventListener('click',()=>{ setTimeout(()=>{ const s=getSaves()[0]; if(s&&Date.now()-s.ts<4000) cloudSave(s.name); },300); });
   ['wordBtn','pdfBtn','printBtn'].forEach(id=>{ const b=$(id); if(b) b.addEventListener('click',()=>{ if(tok()) api('/api/data?a=dl',{kind:id.replace('Btn',''),title:searchInput.value.trim()}); }); });
   (async()=>{ if(tok()){ const r=await api('/api/auth?a=me'); if(r.ok){ user=r.user; label(); pullKV(); } else { localStorage.removeItem(TK); label(); } } else label(); })();
+})();
+</script>
+<script>
+/* إشعار قرب انتهاء الاشتراك + إحصائيات حقيقية للمكتبة */
+(function(){
+  try{
+    var B=(typeof MOE_BOOKS!=='undefined')?MOE_BOOKS:{},g=0,subj={},les=0;
+    Object.keys(B).forEach(function(k){g++;var sb=B[k].subjects||{};Object.keys(sb).forEach(function(n){subj[n]=1;Object.keys(sb[n]).forEach(function(u){les+=sb[n][u].length;});});});
+    if(les>0){var n=function(x){return x.toLocaleString('ar-EG');};var c=function(v,l){return '<div style="flex:1;min-width:110px;background:#fff;border:1px solid #cfe6d9;border-radius:12px;padding:10px;text-align:center"><div style="font-size:1.5rem;font-weight:800;color:#1e7a4f">'+n(v)+'</div><div style="font-size:.85rem;color:#555">'+l+'</div></div>';};
+    var el=document.getElementById('tdStats');el.style.display='block';el.innerHTML='<div style="display:flex;flex-wrap:wrap;gap:8px">'+c(g,'صف دراسي')+c(Object.keys(subj).length,'مادة')+c(les,'عنوان درس من منهج الوزارة')+'</div>';}
+  }catch(e){}
+  (async function(){
+    try{
+      var t=localStorage.getItem('tahdeeri_token'); if(!t) return;
+      var r=await fetch('/api/auth?a=me',{headers:{Authorization:'Bearer '+t}}).then(function(x){return x.json();});
+      if(!r||!r.ok||!r.user||!r.user.sub||!r.user.sub.ends_at) return;
+      var end=new Date(String(r.user.sub.ends_at)); if(isNaN(end)) return;
+      var days=Math.ceil((end-Date.now())/864e5);
+      var key='td_subbar_'+new Date().toISOString().slice(0,10);
+      if(days>7||localStorage.getItem(key)) return;
+      var msg=days<0?'انتهى اشتراكك بتاريخ '+String(r.user.sub.ends_at).slice(0,10)+'. جدّده للاستمرار في التوليد بالذكاء الاصطناعي.':(days===0?'ينتهي اشتراكك اليوم.':'ينتهي اشتراكك خلال '+days+' يوم ('+String(r.user.sub.ends_at).slice(0,10)+').');
+      var b=document.getElementById('tdSubBar'); b.style.display='block';
+      b.innerHTML='⏰ '+msg+' <button type="button" id="tdSubX" style="margin-right:10px;border:0;background:none;cursor:pointer;font-size:1.1rem">✕</button>';
+      document.getElementById('tdSubX').onclick=function(){b.style.display='none';localStorage.setItem(key,'1');};
+    }catch(e){}
+  })();
 })();
 </script>
 </body>
