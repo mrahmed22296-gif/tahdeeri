@@ -168,6 +168,11 @@
   .page-foot{
     margin-top:10px; display:flex; justify-content:space-between; font-size:.85rem; font-weight:700;
   }
+  /* desktop: keep the preview in view while the side panel scrolls */
+  @media screen and (min-width:981px){
+    .paper-wrap{position:sticky; top:12px; align-self:start; max-height:calc(100vh - 24px); overflow-y:auto}
+    .paper-wrap .paper{overflow-x:auto}
+  }
   /* ---------- Footer ---------- */
   .site-footer{
     max-width:1240px; margin:0 auto 30px; padding:0 16px;
@@ -179,6 +184,7 @@
     body{background:#fff}
     .site-header,.controls-col,.paper-toolbar,.site-footer,.row-tools,.li-del{display:none !important}
     .layout{display:block; margin:0; padding:0; max-width:none}
+    .paper-wrap{position:static !important; max-height:none !important; overflow:visible !important}
     .paper{border:0; box-shadow:none; padding:0; overflow:visible; border-radius:0}
     .sheet{min-width:0}
     .sheet [contenteditable]:hover,.sheet [contenteditable]:focus{background:none; box-shadow:none}
