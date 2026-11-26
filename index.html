@@ -1454,13 +1454,7 @@ function buildWordHtml(){
   + 'ol,ul{margin:0; padding-right:16px}'
   + 'li{margin-bottom:2px}'
   + 'p{margin:2px 0}'
-  + '</style></head><body><div class="WordSection1">' + body + '</div><div id="acctOverlay" style="display:none;position:fixed;inset:0;background:rgba(20,40,30,.55);z-index:60;padding:16px;overflow:auto">
-  <div style="max-width:520px;margin:20px auto;background:var(--card,#fff);color:inherit;border-radius:14px;padding:18px;position:relative;box-shadow:0 10px 40px rgba(0,0,0,.3)">
-    <button id="acctClose" type="button" style="position:absolute;top:8px;left:10px;border:0;background:none;font-size:22px;cursor:pointer;color:inherit">×</button>
-    <div id="acctBody"></div>
-  </div>
-</div>
-</body></html>';
+  + '</style></head><body><div class="WordSection1">' + body + '</div></body></html>';
 }
 function downloadBlob(blob, name){
   const a = document.createElement('a');
@@ -1656,5 +1650,11 @@ document.getElementById('pdfBtn').onclick = async () => {
   (async()=>{ if(tok()){ const r=await api('/api/auth?a=me'); if(r.ok){ user=r.user; label(); pullKV(); } else { localStorage.removeItem(TK); label(); } } else label(); })();
 })();
 </script>
+<div id="acctOverlay" style="display:none;position:fixed;inset:0;background:rgba(20,40,30,.55);z-index:60;padding:16px;overflow:auto">
+  <div style="max-width:520px;margin:20px auto;background:var(--card,#fff);color:inherit;border-radius:14px;padding:18px;position:relative;box-shadow:0 10px 40px rgba(0,0,0,.3)">
+    <button id="acctClose" type="button" style="position:absolute;top:8px;left:10px;border:0;background:none;font-size:22px;cursor:pointer;color:inherit">×</button>
+    <div id="acctBody"></div>
+  </div>
+</div>
 </body>
 </html>
