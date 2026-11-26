@@ -981,38 +981,53 @@ document.getElementById('aiBtn').onclick = async () => {
   btn.disabled = true;
   msg.style.color = '#666';
   msg.textContent = 'جاري توليد التحضير بالذكاء الاصطناعي... (قد يستغرق نحو ٢٠ ثانية)';
-  try{
-    const code = usedCodes().slice(-1)[0] || '';
-    const r = await fetch('https://mohasaba-online.vercel.app/api/generate', {
-      method: 'POST', headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        site: SITE_ID, code, title,
-        template: state.template,
-        grade: document.getElementById('fClass').value.trim(),
-        source: (document.getElementById('srcText')||{value:''}).value.trim()
-      })
-    });
-    const data = await r.json();
-    if(data.ok && data.lesson){
-      const L = data.lesson;
-      L.template = state.template;
-      L.title = title;
-      render(L);
-      msg.textContent = 'تم توليد التحضير ✅ راجعه وعدّله قبل الطباعة.';
-      msg.style.color = '#1e8e3e';
-      window.scrollTo({top: 0, behavior: 'smooth'});
-    } else if(data.error === 'rate'){
-      msg.textContent = 'وصلت للحد اليومي من التوليد. جرّب غدًا أو استخدم المكتبة/النموذج الفارغ.';
-      msg.style.color = '#c0392b';
-    } else if(data.error === 'title'){
-      msg.textContent = 'اكتب عنوان الدرس أولاً في الخطوة ٢.';
-      msg.style.color = '#c0392b';
-    } else {
-      msg.textContent = 'تعذر التوليد الآن. جرّب مرة أخرى أو استخدم المكتبة/النموذج الفارغ.';
-      msg.style.color = '#c0392b';
+  const code = usedCodes().slice(-1)[0] || '';
+  const payload = {
+    site: SITE_ID, code, title,
+    template: state.template,
+    grade: document.getElementById('fClass').value.trim(),
+    source: (document.getElementById('srcText')||{value:''}).value.trim()
+  };
+  const waitS = s => new Promise(res => setTimeout(res, s*1000));
+  let data = null, netFail = false;
+  for(let attempt=1; attempt<=3; attempt++){
+    netFail = false;
+    try{
+      const r = await fetch('https://mohasaba-online.vercel.app/api/generate', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload)
+      });
+      data = await r.json();
+    }catch(e){ data = null; netFail = true; }
+    if(data && data.ok) break;
+    if(data && (data.error==='rate' || data.error==='title' || data.error==='code')) break;
+    if(attempt<3){
+      msg.style.color = '#666';
+      msg.textContent = netFail
+        ? 'تعذر الاتصال، جاري إعادة المحاولة تلقائيًا... (محاولة '+(attempt+1)+' من ٣)'
+        : 'الخدمة مشغولة قليلًا، جاري إعادة المحاولة تلقائيًا... (محاولة '+(attempt+1)+' من ٣)';
+      await waitS(3*attempt);
     }
-  }catch(e){
+  }
+  if(data && data.ok && data.lesson){
+    const L = data.lesson;
+    L.template = state.template;
+    L.title = title;
+    render(L);
+    msg.textContent = 'تم توليد التحضير ✅ راجعه وعدّله قبل الطباعة.';
+    msg.style.color = '#1e8e3e';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  } else if(data && data.error === 'rate'){
+    msg.textContent = 'وصلت للحد اليومي من التوليد. جرّب غدًا أو استخدم المكتبة/النموذج الفارغ.';
+    msg.style.color = '#c0392b';
+  } else if(data && data.error === 'title'){
+    msg.textContent = 'اكتب عنوان الدرس أولاً في الخطوة ٢.';
+    msg.style.color = '#c0392b';
+  } else if(netFail){
     msg.textContent = 'تعذر الاتصال بخدمة التوليد. تحقق من الاتصال وأعد المحاولة.';
+    msg.style.color = '#c0392b';
+  } else {
+    msg.textContent = 'الخدمة مشغولة الآن من مزود الذكاء الاصطناعي. انتظر دقيقة وجرّب مجددًا، أو استخدم المكتبة/النموذج الفارغ.';
     msg.style.color = '#c0392b';
   }
   btn.disabled = false;
