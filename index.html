@@ -1124,7 +1124,7 @@ document.getElementById('wordBtn').onclick = () => {
 };
 async function buildPdfBlob(){
   const stage = document.createElement('div');
-  stage.style.cssText = 'position:absolute; left:-10000px; top:0; width:1120px; background:#fff; padding:6px; direction:rtl';
+  stage.style.cssText = 'position:fixed; left:0; top:0; width:1120px; background:#fff; padding:6px; direction:rtl; z-index:99999';
   stage.appendChild(cleanedSheetClone());
   document.body.appendChild(stage);
   try{
