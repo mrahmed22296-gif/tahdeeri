@@ -1092,7 +1092,11 @@ function cleanedSheetClone(){
   return clone;
 }
 function buildWordHtml(){
-  const body = cleanedSheetClone().innerHTML;
+  const clone = cleanedSheetClone();
+  clone.querySelectorAll('table').forEach(t=>{ t.setAttribute('border','1'); t.setAttribute('cellpadding','4'); t.setAttribute('cellspacing','0'); t.setAttribute('bordercolor','#333333'); });
+  clone.querySelectorAll('th').forEach(th=>{ th.setAttribute('bgcolor','#dcefe4'); });
+  clone.querySelectorAll('.head-cells th').forEach(th=>{ th.setAttribute('bgcolor','#1d6b4f'); });
+  const body = clone.innerHTML;
   return '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40" dir="rtl"><head><meta charset="utf-8">'
   + '<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom><w:DoNotOptimizeForBrowser/></w:WordDocument></xml><![endif]-->'
   + '<style>'
