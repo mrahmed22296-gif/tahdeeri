@@ -261,6 +261,8 @@
     <div class="card">
       <h2>الطباعة والحفظ</h2>
       <button class="btn btn-primary" id="printBtn" type="button">🖨️ طباعة / حفظ PDF</button>
+      <button class="btn btn-ghost" id="wordBtn" type="button">📄 تحميل Word</button>
+      <button class="btn btn-ghost" id="pdfBtn" type="button">📕 تحميل PDF</button>
       <button class="btn btn-ghost" id="subBtn" type="button">💎 اشتراك تحضيري — دينار شهريًا</button>
       <button class="btn btn-ghost" id="saveBtn" type="button">💾 حفظ نسخة في المتصفح</button>
       <button class="btn btn-danger" id="clearBtn" type="button">مسح كل الحقول</button>
@@ -1071,6 +1073,85 @@ document.getElementById('actBtn').onclick = async () => {
   else render(null);
   renderSaves();
 })();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+/* ================= تحميل Word / PDF ================= */
+function currentTitle(){
+  return (document.getElementById('lessonSearch').value || '\u062f\u0631\u0633').trim();
+}
+function safeFileTitle(){
+  const t = currentTitle().replace(/[\\/:*?"<>|]/g,'').slice(0,60);
+  return t || '\u062f\u0631\u0633';
+}
+function cleanedSheetClone(){
+  const clone = sheet.cloneNode(true);
+  clone.querySelectorAll('.no-print,.row-tools,.li-del').forEach(e=>e.remove());
+  clone.querySelectorAll('[contenteditable]').forEach(e=>{ e.removeAttribute('contenteditable'); e.removeAttribute('data-ph'); });
+  return clone;
+}
+function buildWordHtml(){
+  const body = cleanedSheetClone().innerHTML;
+  return '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40" dir="rtl"><head><meta charset="utf-8">'
+  + '<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom><w:DoNotOptimizeForBrowser/></w:WordDocument></xml><![endif]-->'
+  + '<style>'
+  + '@page{size:29.7cm 21cm; margin:1cm; mso-page-orientation:landscape}'
+  + 'body{font-family:"Sakkal Majalla","Traditional Arabic",Arial,sans-serif; direction:rtl; font-size:11pt}'
+  + 'table.ftable{width:100%; border-collapse:collapse; table-layout:fixed; margin-bottom:8px}'
+  + '.ftable td,.ftable th{border:1.5px solid #333; padding:4px 6px; vertical-align:top; font-size:10.5pt; line-height:1.6}'
+  + '.ftable th{background:#dcefe4; font-weight:bold; text-align:center}'
+  + '.head-cells th{background:#1d6b4f; color:#fff}'
+  + '.head-cells td{text-align:center}'
+  + '.band td{font-weight:bold}'
+  + '.band .lbl,.mini-lbl,.lbl{color:#1d6b4f; font-weight:bold}'
+  + '.head-cells .lbl{color:#000}'
+  + 'ol,ul{margin:0; padding-right:16px}'
+  + 'li{margin-bottom:2px}'
+  + 'p{margin:2px 0}'
+  + '</style></head><body>' + body + '</body></html>';
+}
+function downloadBlob(blob, name){
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  document.body.appendChild(a); a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 800);
+}
+document.getElementById('wordBtn').onclick = () => {
+  const html = buildWordHtml();
+  const blob = new Blob(['\ufeff' + html], {type:'application/msword;charset=utf-8'});
+  downloadBlob(blob, '\u062a\u062d\u0636\u064a\u0631-' + safeFileTitle() + '.doc');
+};
+async function buildPdfBlob(){
+  const stage = document.createElement('div');
+  stage.style.cssText = 'position:absolute; left:-10000px; top:0; width:1120px; background:#fff; padding:6px; direction:rtl';
+  stage.appendChild(cleanedSheetClone());
+  document.body.appendChild(stage);
+  try{
+    const opt = {
+      margin:[6,6,6,6],
+      image:{type:'jpeg', quality:0.95},
+      html2canvas:{scale:1.6, useCORS:true, backgroundColor:'#ffffff'},
+      jsPDF:{unit:'mm', format:'a4', orientation:'landscape'},
+      pagebreak:{mode:['css','legacy']}
+    };
+    return await html2pdf().set(opt).from(stage).outputPdf('blob');
+  } finally { stage.remove(); }
+}
+document.getElementById('pdfBtn').onclick = async () => {
+  const btn = document.getElementById('pdfBtn');
+  btn.disabled = true;
+  const oldTxt = btn.textContent;
+  btn.textContent = '\u23f3 \u062c\u0627\u0631\u064a \u062a\u062c\u0647\u064a\u0632 PDF...';
+  try{
+    const blob = await buildPdfBlob();
+    downloadBlob(blob, '\u062a\u062d\u0636\u064a\u0631-' + safeFileTitle() + '.pdf');
+  }catch(e){
+    alert('\u062a\u0639\u0630\u0631 \u0625\u0646\u0634\u0627\u0621 PDF \u2014 \u062c\u0631\u0651\u0628 \u0632\u0631 \u0627\u0644\u0637\u0628\u0627\u0639\u0629 \u0648\u0627\u062d\u0641\u0638 \u0643\u0640 PDF.');
+  } finally {
+    btn.disabled = false; btn.textContent = oldTxt;
+  }
+};
 </script>
 </body>
 </html>
