@@ -712,6 +712,35 @@ const listHtml = (items, ordered=true) => {
 };
 
 /* ================= رسم النموذج ================= */
+const SUBJ_TPL = {
+  math:{name:'الرياضيات',sub:'تمهيد + قوانين + أمثلة وتدريبات',open:'التمهيد (مراجعة المتطلبات السابقة):',c1:'تحليل المحتوى',p:[['المفاهيم والمصطلحات','concepts',1],['القوانين والخصائص','facts',0],['القاعدة / التعميم','generalization',2]],c3:'الأمثلة والتدريبات',b:[['التقويم الختامي:','closing'],['الواجب المنزلي:','adjacent']]},
+  arabic:{name:'اللغة العربية',sub:'نص + مفردات + أنشطة لغوية',open:'التمهيد:',c1:'تحليل الدرس',p:[['المفردات والتراكيب','concepts',1],['الأفكار الرئيسة','facts',0],['الفكرة العامة','generalization',2]],c3:'الأنشطة اللغوية',b:[['التقويم الختامي:','closing'],['الواجب المنزلي:','adjacent']]},
+  english:{name:'اللغة الإنجليزية',sub:'Warm-up + vocabulary + activities',open:'Warm-up (التمهيد):',c1:'Lesson analysis (تحليل الدرس)',p:[['Vocabulary','concepts',1],['Language structures','facts',0],['Skills focus','generalization',2]],c3:'Activities (الأنشطة)',b:[['Closure / Assessment:','closing'],['Homework:','adjacent']]},
+  science:{name:'العلوم والفيزياء والكيمياء والأحياء',sub:'استكشاف + مفاهيم علمية + تجارب',open:'الاستكشاف / الربط بالحياة:',c1:'تحليل المحتوى العلمي',p:[['المفاهيم العلمية','concepts',1],['الحقائق العلمية','facts',0],['التعميم','generalization',2]],c3:'الأنشطة والتجارب',b:[['الوسائل والأدوات:','aids'],['التقويم الختامي:','closing'],['النشاط البيتي:','adjacent']]},
+  islamic:{name:'التربية الإسلامية والقرآن',sub:'تمهيد + أدلة + قيم',open:'التمهيد:',c1:'تحليل الدرس',p:[['المفاهيم','concepts',1],['الآيات والأحاديث والأدلة','facts',0],['القيمة المستفادة','value',2]],c3:'الأنشطة',b:[['التقويم الختامي:','closing'],['النشاط البيتي:','adjacent']]}
+};
+function subjSheet(headRow, L, d){
+  const part=(lab,key,m)=>'<div class="mini-lbl">'+lab+':</div>'+(m===0||m===1?listHtml(L[key], m===0):'<p>'+editable(L[key]||'')+'</p>');
+  const bw=Math.floor(100/d.b.length);
+  return headRow+
+   '<table class="ftable band" style="margin-bottom:0"><tr>'+
+   '<td style="width:30%"><span class="lbl">عنوان الوحدة:</span><br>'+editable(L.unit||'','عنوان الوحدة')+'</td>'+
+   '<td style="width:30%"><span class="lbl">عنوان الدرس:</span><br>'+editable(L.title||'','عنوان الدرس')+'<br><span class="lbl">المعيار / الصفحة:</span> '+editable(L.standard||'')+' '+editable(L.page||'')+'</td>'+
+   '<td><span class="lbl">'+d.open+'</span><br>'+editable(L.opening||'',d.open)+'</td></tr></table>'+
+   '<table class="ftable"><tr><th style="width:34%">'+d.c1+'</th><th style="width:22%">الأهداف السلوكية</th><th style="width:22%">'+d.c3+'</th><th style="width:22%">التقويم المصاحب</th></tr><tr>'+
+   '<td>'+d.p.map(x=>part(x[0],x[1],x[2]===1?1:(x[2]===2?2:0))).join('')+'</td>'+
+   '<td><div class="mini-lbl">في نهاية الدرس يكون المتعلم قادرًا على أن:</div>'+listHtml(L.objectives)+'</td>'+
+   '<td>'+listHtml(L.activities)+'</td><td>'+listHtml(L.assessment)+'</td></tr></table>'+
+   '<table class="ftable"><tr>'+d.b.map(x=>'<td style="width:'+bw+'%"><span class="mini-lbl">'+x[0]+'</span> '+(x[1]==='aids'?listHtml(L.aids,false):editable(L[x[1]]||''))+'</td>').join('')+'</tr></table>';
+}
+function subjTplFor(subject){
+  if(/الرياضيات/.test(subject)) return 'math';
+  if(/اللغة العربية/.test(subject)) return 'arabic';
+  if(/الإنجليزية/.test(subject)) return 'english';
+  if(/العلوم|الفيزياء|الكيمياء|الأحياء|الجيولوجيا/.test(subject)) return 'science';
+  if(/الإسلامية|القرآن/.test(subject)) return 'islamic';
+  return '';
+}
 function render(lesson){
   const L = lesson || {};
   const day = document.getElementById('fDay').value;
@@ -728,7 +757,9 @@ function render(lesson){
       </tr>
     </table>`;
 
-  if(state.template === 'social'){
+  if(SUBJ_TPL[state.template]){
+    sheet.innerHTML = subjSheet(headRow, L, SUBJ_TPL[state.template]);
+  } else if(state.template === 'social'){
     sheet.innerHTML = `
       ${headRow}
       <table class="ftable band" style="margin-bottom:0">
@@ -824,6 +855,7 @@ const libNote = document.getElementById('libNote');
 
 function updateLibNote(){
   const count = LESSONS.filter(l => l.template === state.template).length;
+  if(!count){ libNote.textContent = 'اختر الدرس من كتاب الوزارة (الخطوة ٢) أو اكتب عنوانه، وسيفتح النموذج جاهزًا للتعبئة أو التوليد.'; return; }
   libNote.textContent = `المكتبة تضم حاليًا ${count} دروس لهذا النموذج — وسيُفتح نموذج فارغ لأي درس غير موجود.`;
 }
 
@@ -977,7 +1009,7 @@ pickLesson.addEventListener('change', () => {
   const key = Object.keys(MOE_BOOKS)[pickGrade.selectedIndex - 1];
   if(!key || !pickLesson.value) return;
   const book = MOE_BOOKS[key];
-  const tpl = (book.tpl && book.tpl[pickSubject.value]) || book.template;
+  const tpl = subjTplFor(pickSubject.value) || (book.tpl && book.tpl[pickSubject.value]) || book.template;
   pickedSubject = pickSubject.value; pickedLessonTitle = pickLesson.value;
   const unitTitle = pickUnit.value;
   const lessonTitle = pickLesson.value;
@@ -1071,11 +1103,18 @@ function setTemplate(t){
   state.template = t;
   tplSocial.classList.toggle('active', t==='social');
   tplPsych.classList.toggle('active', t==='psych');
+  document.querySelectorAll('.tpl-pick [data-t]').forEach(b=>b.classList.toggle('active', b.dataset.t===t));
   updateLibNote();
   render(null);
 }
 tplSocial.onclick = () => setTemplate('social');
 tplPsych.onclick = () => setTemplate('psych');
+Object.keys(SUBJ_TPL).forEach(k=>{
+  const b=document.createElement('button'); b.type='button'; b.dataset.t=k;
+  b.innerHTML=SUBJ_TPL[k].name+'<small>'+SUBJ_TPL[k].sub+'</small>';
+  b.onclick=()=>setTemplate(k);
+  tplPsych.parentNode.appendChild(b);
+});
 
 /* ================= بيانات الحصة ================= */
 ['fDay','fDate','fPeriod','fClass'].forEach(id => {
@@ -1173,6 +1212,7 @@ function setTemplateKeep(t){
   state.template = t;
   tplSocial.classList.toggle('active', t==='social');
   tplPsych.classList.toggle('active', t==='psych');
+  document.querySelectorAll('.tpl-pick [data-t]').forEach(b=>b.classList.toggle('active', b.dataset.t===t));
   updateLibNote();
 }
 
@@ -1210,7 +1250,7 @@ document.getElementById('aiBtn').onclick = async () => {
   const payload = {
     site: SITE_ID, code,
     title: (pickedSubject && title===pickedLessonTitle && !/الاجتماعيات|وطني|دولة الكويت|الكويت و|علم النفس|الفلسفة/.test(pickedSubject)) ? ('مادة ' + pickedSubject + ' - الدرس: ' + title) : title,
-    template: state.template,
+    template: SUBJ_TPL[state.template] ? 'psych' : state.template,
     grade: document.getElementById('fClass').value.trim(),
     source: (document.getElementById('srcText')||{value:''}).value.trim()
   };
