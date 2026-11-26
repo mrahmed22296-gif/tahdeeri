@@ -1063,7 +1063,7 @@ pickLesson.addEventListener('change', () => {
   const ld=k=>{try{return JSON.parse(localStorage.getItem(k))||[]}catch(e){return []}};
   const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){} if(window.tdPushKV) window.tdPushKV(k===FAV?'fav':'rec',v);};
   const keys=()=>Object.keys(MOE_BOOKS);
-  let IDX=null;
+  let IDX=null; window.tdResetIdx=function(){IDX=null;};
   function build(){
     IDX=[];
     keys().forEach(gk=>{const b=MOE_BOOKS[gk];
@@ -1690,6 +1690,28 @@ document.getElementById('pdfBtn').onclick = async () => {
       document.getElementById('tdSubX').onclick=function(){b.style.display='none';localStorage.setItem(key,'1');};
     }catch(e){}
   })();
+})();
+</script>
+<script>
+/* tdCurLoad: منهج إضافي يديره المشرف من لوحة الإدارة */
+(function tdCurLoad(){
+  fetch('/api/cur').then(function(r){return r.json();}).then(function(d){
+    if(!d||!d.ok||!d.entries||!d.entries.length) return;
+    var sel=pickGrade.selectedIndex;
+    d.entries.forEach(function(e){
+      var k=String(e.grade); if(!e.units||!e.subject) return;
+      if(!MOE_BOOKS[k]) MOE_BOOKS[k]={g:e.g||('')+'',template:e.template||'social',subjects:{}};
+      var cur=MOE_BOOKS[k].subjects[e.subject]||{};
+      MOE_BOOKS[k].subjects[e.subject]=Object.assign({},cur,e.units);
+      if(e.template){(MOE_BOOKS[k].tpl=MOE_BOOKS[k].tpl||{})[e.subject]=e.template;}
+    });
+    var keys=Object.keys(MOE_BOOKS).sort(function(a,b){return a-b;});
+    var sorted={}; keys.forEach(function(k){sorted[k]=MOE_BOOKS[k];});
+    Object.keys(MOE_BOOKS).forEach(function(k){delete MOE_BOOKS[k];}); Object.keys(sorted).forEach(function(k){MOE_BOOKS[k]=sorted[k];});
+    fillPick(pickGrade,'١) الصف الدراسي…',Object.keys(MOE_BOOKS).map(function(k){return 'الصف '+MOE_BOOKS[k].g;}));
+    pickGrade.selectedIndex=sel>0?sel:0;
+    if(window.tdResetIdx) window.tdResetIdx();
+  }).catch(function(){});
 })();
 </script>
 </body>
