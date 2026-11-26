@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>أدوات المعلم — تحضيري</title>
+<meta name="description" content="أدوات مجانية للمعلم الكويتي: أوراق عمل، نماذج اختبار، واجبات، ملخصات وهيكل عرض تقديمي لأي درس من المنهج الكويتي، قابلة للطباعة والتصدير إلى Word.">
+<link rel="canonical" href="https://tahdeeri.vercel.app/tools.html">
+<meta property="og:title" content="أدوات المعلم — تحضيري"><meta property="og:type" content="website"><meta property="og:locale" content="ar_KW"><meta property="og:url" content="https://tahdeeri.vercel.app/tools.html">
+<style>
+body{font-family:Tajawal,Tahoma,Arial,sans-serif;margin:0;background:#f5f7f6;color:#222}
+header{background:#1e7a4f;color:#fff;padding:18px;text-align:center}header a{color:#fff}
+main{max-width:900px;margin:auto;padding:14px}
+.card{background:#fff;border-radius:12px;padding:14px;margin-bottom:12px;box-shadow:0 1px 4px #0001}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}.tabs button{flex:1;min-width:110px;padding:9px;border:1px solid #1e7a4f;background:#fff;color:#1e7a4f;border-radius:8px;cursor:pointer;font:inherit}
+.tabs button.on{background:#1e7a4f;color:#fff}
+label{display:block;font-weight:700;margin:8px 0 3px}select,input{width:100%;padding:8px;border:1px solid #ccc;border-radius:8px;font:inherit;box-sizing:border-box}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}@media(max-width:600px){.row{grid-template-columns:1fr}}
+.btn{padding:10px 16px;border:0;border-radius:8px;background:#1e7a4f;color:#fff;cursor:pointer;font:inherit;margin:8px 4px 0 0}.btn.g{background:#666}
+#out{background:#fff;padding:20px;border-radius:12px;line-height:2}
+#out h2{text-align:center;margin:0 0 6px}#out .meta{display:flex;justify-content:space-between;border-bottom:2px solid #000;padding-bottom:6px;margin-bottom:10px}
+.ln{border-bottom:1px dotted #666;height:26px}.q{margin:10px 0}
+table{border-collapse:collapse;width:100%}td,th{border:1px solid #000;padding:6px}
+.note{font-size:.85rem;color:#666}
+@media print{header,.card,.btn,.note.np{display:none}body{background:#fff}#out{box-shadow:none;padding:0}}
+</style></head><body>
+<header><h1 style="margin:0">أدوات المعلم</h1><p style="margin:4px 0 0">أوراق عمل · اختبارات · واجبات · ملخصات · عرض تقديمي — <a href="/">العودة لتحضير الدروس</a></p></header>
+<main>
+<div class="card">
+<div class="tabs" id="tabs"></div>
+<div class="row"><div><label>الصف</label><select id="g"></select></div><div><label>المادة</label><select id="s"></select></div></div>
+<label>الدرس (اختر من القائمة أو اكتب)</label><input id="l" list="ll" placeholder="عنوان الدرس"><datalist id="ll"></datalist>
+<div class="row"><div><label>اسم المدرسة (اختياري)</label><input id="sch"></div><div><label>اسم المعلم (اختياري)</label><input id="tch"></div></div>
+<div class="row"><div><label>عدد الأسئلة / الشرائح</label><input id="n" type="number" min="3" max="20" value="8"></div><div><label>الدرجة الكلية (للاختبار)</label><input id="tot" type="number" value="20"></div></div>
+<button class="btn" id="mk">إنشاء</button><button class="btn g" id="pr">طباعة</button><button class="btn g" id="wd">تنزيل Word</button>
+<p class="note">القوالب جاهزة ومجانية وبدون ذكاء اصطناعي: الهيكل والأسئلة العامة تُبنى من عنوان الدرس، وأنت تكمل المحتوى بما يناسب كتاب الوزارة.</p>
+</div>
+<div id="out"><p class="note">اختر الأداة والدرس ثم اضغط إنشاء.</p></div>
+</main>
+<script src="/moe-extra.js"></script>
+<script>
+const T={ws:'ورقة عمل',ex:'نموذج اختبار',hw:'واجب منزلي',sm:'ملخص الدرس',pp:'هيكل عرض تقديمي'};let tool='ws';
+const D=window.MOE_EXTRA||[];const $=i=>document.getElementById(i);
+$('tabs').innerHTML=Object.keys(T).map(k=>'<button data-k="'+k+'" class="'+(k==tool?'on':'')+'">'+T[k]+'</button>').join('');
+$('tabs').onclick=e=>{const k=e.target.dataset.k;if(!k)return;tool=k;[...$('tabs').children].forEach(b=>b.classList.toggle('on',b.dataset.k==k));};
+const gr=[...new Map(D.map(e=>[e.grade,e.g])).entries()].sort((a,b)=>a[0]-b[0]);
+$('g').innerHTML=gr.map(x=>'<option value="'+x[0]+'">'+x[1]+'</option>').join('');
+function subs(){const g=+$('g').value;$('s').innerHTML=[...new Set(D.filter(e=>e.grade==g).map(e=>e.subject))].map(x=>'<option>'+x+'</option>').join('');lessons();}
+function lessons(){const e=D.find(e=>e.grade==+$('g').value&&e.subject==$('s').value);const a=[];if(e)Object.values(e.units).forEach(u=>u.forEach(t=>a.push(t)));$('ll').innerHTML=a.slice(0,400).map(t=>'<option value="'+t.replace(/"/g,'&quot;')+'">').join('');}
+$('g').onchange=subs;$('s').onchange=lessons;subs();
+const esc=t=>String(t).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const lines=k=>Array.from({length:k},()=>'<div class="ln"></div>').join('');
+function head(title){const gt=$('g').selectedOptions[0].text;return '<h2>'+title+'</h2><div class="meta"><span>المادة: '+esc($('s').value)+' — الصف: '+gt+'</span><span>الدرس: '+esc($('l').value)+'</span></div><div class="meta"><span>المدرسة: '+esc($('sch').value)+'</span><span>المعلم: '+esc($('tch').value)+'</span><span>الاسم: ................ الشعبة: ......</span></div>';}
+const stems=['عرّف المفهوم الرئيسي في درس «L» بأسلوبك.','اذكر ثلاث نقاط أساسية وردت في درس «L».','اشرح بالتفصيل أهم فكرة في درس «L» مع مثال.','علّل: أهمية موضوع «L» في حياتنا.','قارن بين فكرتين وردتا في درس «L».','ما الأسباب والنتائج المتعلقة بموضوع «L»؟','اكتب فقرة قصيرة تلخّص درس «L».','استنتج فائدة تطبيقية من درس «L» في واقعنا في الكويت.','ما رأيك في موضوع «L»؟ وضّح إجابتك.','ضع كلمة (صح) أو (خطأ) أمام كل عبارة من عبارات درس «L».','أكمل الفراغ بما يناسب من درس «L».','اختر الإجابة الصحيحة من بين البدائل.'];
+const mk={
+ws(L,n){let h=head('ورقة عمل');for(let i=0;i<n;i++)h+='<div class="q"><b>س'+(i+1)+':</b> '+stems[i%stems.length].replace(/L/g,esc(L))+lines(2)+'</div>';return h;},
+ex(L,n,tot){n=Math.max(n,4);const m=Math.floor(tot/n),r=tot-m*n;let h=head('اختبار قصير — الدرجة: '+tot);h+='<table><tr><th>السؤال</th><th>الدرجة</th></tr>'+Array.from({length:n},(_,i)=>'<tr><td>س'+(i+1)+'</td><td>'+(m+(i==n-1?r:0))+'</td></tr>').join('')+'<tr><th>المجموع</th><th>'+tot+'</th></tr></table>';
+ h+='<div class="q"><b>السؤال الأول: اختر الإجابة الصحيحة (درجة لكل فقرة)</b>'+[1,2,3].map(i=>'<div>'+i+') ........................................<br>أ) ........ ب) ........ ج) ........ د) ........</div>').join('')+'</div>';
+ h+='<div class="q"><b>السؤال الثاني: ضع (صح) أو (خطأ)</b>'+[1,2,3].map(i=>'<div>'+i+') ................................................ ( &nbsp; &nbsp; )</div>').join('')+'</div>';
+ for(let i=2;i<n;i++)h+='<div class="q"><b>السؤال '+(i+1)+':</b> '+stems[i%stems.length].replace(/L/g,esc(L))+lines(2)+'</div>';return h;},
+hw(L,n){let h=head('واجب منزلي');h+='<div class="q"><b>التاريخ: ..........  موعد التسليم: ..........</b></div>';for(let i=0;i<Math.min(n,6);i++)h+='<div class="q"><b>'+(i+1)+')</b> '+stems[(i*2)%stems.length].replace(/L/g,esc(L))+lines(2)+'</div>';return h+'<div class="q">توقيع ولي الأمر: ..................</div>';},
+sm(L){let h=head('ملخص الدرس');return h+['الفكرة الرئيسية','المفاهيم والمصطلحات','النقاط المهمة','مثال / تطبيق','ماذا تعلمت؟'].map(t=>'<div class="q"><b>'+t+':</b>'+lines(3)+'</div>').join('');},
+pp(L,n){let h=head('هيكل عرض تقديمي ('+n+' شرائح)');const a=['عنوان الدرس: '+L,'أهداف الدرس','تمهيد / سؤال افتتاحي','المفهوم الأول','المفهوم الثاني','مثال وصورة','نشاط تفاعلي','تقويم سريع','ملخص','واجب'];h+='<table><tr><th>#</th><th>عنوان الشريحة</th><th>المحتوى المقترح</th></tr>';for(let i=0;i<n;i++)h+='<tr><td>'+(i+1)+'</td><td>'+esc(a[i%a.length])+'</td><td>&nbsp;</td></tr>';return h+'</table>';}};
+$('mk').onclick=()=>{const L=$('l').value.trim();if(!L){alert('اكتب عنوان الدرس');return}$('out').innerHTML=mk[tool](L,Math.min(20,Math.max(3,+$('n').value||8)),+$('tot').value||20);};
+$('pr').onclick=()=>window.print();
+$('wd').onclick=()=>{const h='<html dir="rtl"><head><meta charset="utf-8"></head><body>'+$('out').innerHTML+'</body></html>';const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+h],{type:'application/msword'}));a.download=T[tool]+'.doc';a.click();};
+</script></body></html>
