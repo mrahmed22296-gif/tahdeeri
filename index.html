@@ -318,6 +318,7 @@
   تحضيري — أداة مجانية تساعد المعلم على ترتيب تحضيره. الصياغات مقترحة وقابلة للتعديل بالكامل، وهي ليست نصوصًا منسوخة من كتب وزارة التربية. النماذج تختلف من مادة لأخرى؛ اختر النموذج المناسب لمادتك وعدّل ما يلزم.
 </footer>
 
+<script src="moe-extra.js"></script>
 <script>
 /* ================= مكتبة الدروس =================
    template: 'social' | 'psych'
@@ -920,6 +921,13 @@ const MOE_BOOKS = {
    "الوحدة الخامسة: ما فلسفة الجمال؟":["مفهوم الجمال","القيمة الجمالية (النظرية الموضوعية والذاتية)","الإدراك الجمالي","الحكم الجمالي","النظريات الفنية (المحاكاة والشكلية والتعبيرية)"]}}}
 };
 
+(window.MOE_EXTRA||[]).forEach(e=>{
+  const k=String(e.grade);
+  if(!MOE_BOOKS[k]) MOE_BOOKS[k]={g:e.g,template:e.template||'social',subjects:{}};
+  MOE_BOOKS[k].subjects[e.subject]=e.units;
+  if(e.template){ (MOE_BOOKS[k].tpl=MOE_BOOKS[k].tpl||{})[e.subject]=e.template; }
+});
+let pickedSubject='', pickedLessonTitle='';
 const pickGrade = document.getElementById('pickGrade');
 const pickSubject = document.getElementById('pickSubject');
 const pickUnit = document.getElementById('pickUnit');
@@ -961,18 +969,21 @@ pickLesson.addEventListener('change', () => {
   const key = Object.keys(MOE_BOOKS)[pickGrade.selectedIndex - 1];
   if(!key || !pickLesson.value) return;
   const book = MOE_BOOKS[key];
+  const tpl = (book.tpl && book.tpl[pickSubject.value]) || book.template;
+  pickedSubject = pickSubject.value; pickedLessonTitle = pickLesson.value;
   const unitTitle = pickUnit.value;
   const lessonTitle = pickLesson.value;
-  setTemplateKeep(book.template);
+  setTemplateKeep(tpl);
   const fc = document.getElementById('fClass');
   if(fc && !fc.value.trim()){ fc.value = book.g; syncHead(); }
   searchInput.value = lessonTitle;
   searchInput.dispatchEvent(new Event('input'));
-  const hit = LESSONS.find(l => l.template === book.template &&
+  const socialSubj = /الاجتماعيات|وطني|دولة الكويت|الكويت و|علم النفس|الفلسفة/.test(pickedSubject);
+  const hit = !socialSubj ? null : LESSONS.find(l => l.template === tpl &&
     (l.title === lessonTitle || lessonTitle.includes(l.title) || l.title.includes(lessonTitle)));
   if(hit){ tryLoadLesson(hit); suggestBox.classList.remove('show'); }
   else {
-    render({ template: book.template, title: lessonTitle, unit: unitTitle, standard:'', page:'',
+    render({ template: tpl, title: lessonTitle, unit: unitTitle, standard:'', page:'',
       opening:'', concepts:[], facts:[], generalization:'', objectives:[], activities:[],
       assessment:[], essay:[], aids:[], value:'', adjacent:'', closing:'' });
     suggestBox.classList.remove('show');
@@ -1125,7 +1136,8 @@ document.getElementById('aiBtn').onclick = async () => {
   msg.textContent = 'جاري توليد التحضير بالذكاء الاصطناعي... (قد يستغرق نحو ٢٠ ثانية)';
   const code = usedCodes().slice(-1)[0] || '';
   const payload = {
-    site: SITE_ID, code, title,
+    site: SITE_ID, code,
+    title: (pickedSubject && title===pickedLessonTitle && !/الاجتماعيات|وطني|دولة الكويت|الكويت و|علم النفس|الفلسفة/.test(pickedSubject)) ? ('مادة ' + pickedSubject + ' - الدرس: ' + title) : title,
     template: state.template,
     grade: document.getElementById('fClass').value.trim(),
     source: (document.getElementById('srcText')||{value:''}).value.trim()
